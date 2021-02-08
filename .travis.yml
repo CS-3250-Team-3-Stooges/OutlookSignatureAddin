@@ -1,9 +1,15 @@
 language: node_js
 node_js:
   - "node"
+  
+# blacklist
+branches:
+  except:
+
+# whitelist
 branches:
   only:
-  - main
-  - dev-kero
-  - dev-philip
-  - Dev-JoseW_Garcia
+    - main
+    - dev-kero
+    - dev-philip
+    - Dev-JoseW_Garcia
