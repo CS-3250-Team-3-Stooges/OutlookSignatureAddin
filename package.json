@@ -24,9 +24,11 @@
     "start:web": "office-addin-debugging start manifest.xml web",
     "stop": "office-addin-debugging stop manifest.xml",
     "validate": "office-addin-manifest validate manifest.xml",
-    "watch": "webpack --mode development --watch"
+    "watch": "webpack --mode development --watch",
+    "test": "mocha mocha-tests --recursive"
   },
   "dependencies": {
+    "chai": "^4.3.0",
     "jquery": "^3.5.1",
     "showdown": "^1.9.1",
     "urijs": "^1.19.5"
@@ -37,6 +39,7 @@
     "@babel/preset-env": "^7.11.5",
     "@types/find-process": "1.2.0",
     "@types/office-js": "^1.0.108",
+    "@types/office-js-preview": "^1.0.196",
     "@types/office-runtime": "^1.0.14",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",

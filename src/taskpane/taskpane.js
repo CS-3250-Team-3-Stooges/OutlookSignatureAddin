@@ -27,6 +27,7 @@
           if (gist) {
             buildBodyContent(gist, function (content, error) {
               if (content) {
+
                 Office.context.mailbox.item.body.setSelectedDataAsync(content,
                   {coercionType: Office.CoercionType.Html}, function(result) {
                     if (result.status === Office.AsyncResultStatus.Failed) {
@@ -63,7 +64,7 @@
       })
     });
   };
-
+  
   function loadGists(user) {
     $('#error-display').hide();
     $('#not-configured').hide();
