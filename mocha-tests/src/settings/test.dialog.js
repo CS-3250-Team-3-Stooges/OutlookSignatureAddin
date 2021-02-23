@@ -1,6 +1,6 @@
 
 const expect = require('chai').expect;
-const multiplyNumbers = require('C:/Users/final/Documents/group3stooges/OutlookSignatureAddin/src/settings/dialog.js').multiplyNumbers;
+const multiplyNumbers = require('../../../src/settings/dialog.js').multiplyNumbers;
 
 describe('Dialog', function () {
     describe('#multiplyNumbers()', function () {

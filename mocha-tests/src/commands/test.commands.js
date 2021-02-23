@@ -1,6 +1,6 @@
 
 const expect = require('chai').expect;
-const multiplyNumbers = require('C:/Users/final/Documents/group3stooges/OutlookSignatureAddin/src/commands/commands.js').multiplyNumbers;
+const multiplyNumbers = require('../../../src/commands/commands.js').multiplyNumbers;
 
 describe('Commands', function () {
     describe('#multiplyNumbers()', function () {
