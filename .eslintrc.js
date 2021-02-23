@@ -1,7 +1,9 @@
 module.exports = {
     "env": {
         "es2021": true,
-        "node": true
+        "node": true,
+        "jquery": true,
+        "office": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
