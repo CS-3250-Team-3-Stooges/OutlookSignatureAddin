@@ -1,9 +1,9 @@
 {
-  "name": "office-addin-taskpane-js",
+  "name": "office-addin-taskpane",
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/OfficeDev/Office-Addin-TaskPane-JS.git"
+    "url": "git+https://github.com/OfficeDev/Office-Addin-TaskPane-JS.git"
   },
   "license": "MIT",
   "config": {
@@ -41,9 +41,10 @@
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^6.1.1",
+    "eslint": "^7.19.0",
     "eslint-config-office-addins": "^1.0.19",
-    "find-process": "^1.4.3",
     "file-loader": "^4.2.0",
+    "find-process": "^1.4.3",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^4.5.0",
     "office-addin-cli": "^1.0.13",
@@ -59,5 +60,12 @@
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   },
-  "prettier": "office-addin-prettier-config"
+  "prettier": "office-addin-prettier-config",
+  "description": "This repository contains the source code used by the [Yo Office generator](https://github.com/OfficeDev/generator-office) when you create a new Office Add-in that appears in the task pane. You can also use this repository as a sample to base your own project from if you choose not to use the generator.",
+  "bugs": {
+    "url": "https://github.com/OfficeDev/Office-Addin-TaskPane-JS/issues"
+  },
+  "homepage": "https://github.com/OfficeDev/Office-Addin-TaskPane-JS#readme",
+  "main": "webpack.config.js",
+  "author": ""
 }
