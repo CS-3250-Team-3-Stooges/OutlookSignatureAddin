@@ -12,4 +12,4 @@ function getConfig() {
     Office.context.roamingSettings.set('defaultGistId', config.defaultGistId);
   
     Office.context.roamingSettings.saveAsync(callback);
-    Office.context.mailbox.item.body.setAsync
+  }

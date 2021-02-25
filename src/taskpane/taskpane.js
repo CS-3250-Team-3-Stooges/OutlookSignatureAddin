@@ -22,7 +22,7 @@
       // When insert button is selected, build the content
       // and insert into the body.
       $('#insert-button').on('click', function(){
-        var gistId = $('.ms-ListItem.is-selected').val();
+        /*var gistId = $('.ms-ListItem.is-selected').val();
         getGist(gistId, function(gist, error) {
           if (gist) {
             buildBodyContent(gist, function (content, error) {
@@ -31,8 +31,10 @@
                   {coercionType: Office.CoercionType.Html}, function(result) {
                     if (result.status === Office.AsyncResultStatus.Failed) {
                       showError('Could not insert gist: ' + result.error.message);
-                    }
-                });
+                    }*/
+
+                    Office.context.mailbox.item.body.setSelectedDataAsync("Philip Marshall");
+                /*});
               } else {
                 showError('Could not create insertable content: ' + error);
               }
@@ -40,7 +42,7 @@
           } else {
             showError('Could not retrieve gist: ' + error);
           }
-        });
+        });*/
       });
 
       // When the settings icon is selected, open the settings dialog.
