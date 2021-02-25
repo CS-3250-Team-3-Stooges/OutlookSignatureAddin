@@ -63,7 +63,7 @@
       })
     });
   };
-
+  
   function loadGists(user) {
     $('#error-display').hide();
     $('#not-configured').hide();

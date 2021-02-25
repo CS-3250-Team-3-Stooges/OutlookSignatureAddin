@@ -1,3 +1,4 @@
+global.Office = () => ({});
 var config;
 var btnEvent;
 
@@ -31,7 +32,8 @@ function insertDefaultGist(event) {
               Office.context.mailbox.item.body.setSelectedDataAsync(content,
                 {coercionType: Office.CoercionType.Html}, function(result) {
                   event.completed();
-              });
+                });               
+
             } else {
               showError(error);
               event.completed();
@@ -90,3 +92,13 @@ var g = getGlobal();
 
 // The add-in command functions need to be available in global scope.
 g.insertDefaultGist = insertDefaultGist;
+
+
+
+function multiplyNumbers(x, y) {
+  return x * y;
+}
+
+module.exports = {
+  multiplyNumbers : multiplyNumbers
+}
