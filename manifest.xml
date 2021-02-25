@@ -4,7 +4,7 @@
   <Version>1.0.0.0</Version>
   <ProviderName>group3stooges</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="Group-3-Stooges"/>
+  <DisplayName DefaultValue="Team-3-Stooges"/>
   <Description DefaultValue="An app for either manual or random selection of signatures to be added to an email. Also allows for addition of new signatures."/>
   <IconUrl DefaultValue="https://localhost:3000/assets/lemonkeart.png"/>
   <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-128.png"/>
@@ -35,7 +35,7 @@
   <DisableEntityHighlighting>false</DisableEntityHighlighting>
   <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
     <Requirements>
-      <bt:Sets DefaultMinVersion="1.1">
+      <bt:Sets DefaultMinVersion="1.3">
         <bt:Set Name="Mailbox"/>
       </bt:Sets>
     </Requirements>
