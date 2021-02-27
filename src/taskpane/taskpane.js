@@ -19,6 +19,15 @@
         $('#not-configured').show();
       }
 
+      $('#insert-signature').on('click', function(){
+        Office.context.mailbox.item.body.setSelectedDataAsync('"Im doing something...idk what tho" -Philip Marshall"');
+      });
+
+      $('#manage-signatures').on('click', function(){
+
+        window.open("https://localhost:3000/src/taskpane/editSignature.html", "", "width=400, height=800");
+      })
+
       // When insert button is selected, build the content
       // and insert into the body.
       $('#insert-button').on('click', function(){
@@ -82,9 +91,14 @@
   }
 
   function onGistSelected() {
-    $('#insert-button').removeAttr('disabled');
+    $('#insert-signature').removeAttr('disabled');
+    $('#manage-signatures').removeAttr('disabled');
     $('.ms-ListItem').removeClass('is-selected').removeAttr('checked');
     $(this).children('.ms-ListItem').addClass('is-selected').attr('checked', 'checked');
+  }
+
+  function onSignatureSelected() {
+    $('insert-signature').removeAttr('disabled');
   }
 
   function showError(error) {

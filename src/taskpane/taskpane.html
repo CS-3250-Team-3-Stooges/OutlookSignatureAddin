@@ -21,7 +21,7 @@
   <main class="ms-landing-page__main">
     <section class="ms-landing-page__content ms-font-m ms-fontColor-neutralPrimary">
       <div id="not-configured" style="display: none;">
-        <div class="centered ms-font-xxl ms-u-textAlignCenter">Welcome!</div>
+        <div class="centered ms-font-xxl ms-u-textAlignCenter">Hello!</div>
         <div class="ms-font-xl" id="settings-prompt">Please choose the <strong>Settings</strong> icon at the bottom of this window to configure this add-in.</div>
       </div>
       <div id="gist-list-container" style="display: none;">
@@ -33,9 +33,21 @@
       <div id="error-display" style="display: none;" class="ms-u-borderBase ms-fontColor-error ms-font-m ms-bgColor-error ms-borderColor-error">
       </div>
     </section>
-    <button class="ms-Button ms-Button--primary" id="insert-button" tabindex=0 disabled>
-      <span class="ms-Button-label">Insert</span>
+    <button class="ms-Button ms-Button--primary buttonPadding" id="insert-signature" tabindex=0 disabled>
+      <span class="ms-Button-label">Insert Signature</span>
     </button>
+    <div id="outer">
+      <div class="inner">
+        <button class="ms-Button ms-Button--primary" id="select-random-signature" tabindex=0 disabled>
+          <span class="ms-Button-label">Random Signature</span>
+        </button>
+      </div>
+      <div class="inner">
+        <button class="ms-Button ms-Button--primary" id="manage-signatures" tabindex=0 enabled>
+          <span class="ms-Button-label">Edit Signatures</span>
+        </button>
+      </div>
+    </div>
   </main>
   <footer class="ms-landing-page__footer ms-bgColor-themePrimary">
     <div class="ms-landing-page__footer--left">
@@ -51,7 +63,7 @@
   <script type="text/javascript" src="../node_modules/urijs/src/URI.min.js"></script>
   <script type="text/javascript" src="../src/helpers/addin-config.js"></script>
   <script type="text/javascript" src="../src/helpers/gist-api.js"></script>
-  <script type="text/javascript" src="taskpane.js"></script>
+  <script type="text/javascript" src="taskpane.js"></script> 
 </body>
 
 </html>
