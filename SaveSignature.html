@@ -61,20 +61,24 @@
 		
 		// Convert to BLOB
 		const textConvert = new Blob([data], { type: 'text/plain' });
-	}
+	
 		
-	var fs = require('fs')
+		var fs = require('fs')
 
-	fs.readFile('./signatures.json', 'utf-8', function(err, data) {
-		if (err) throw err
+		fs.readFile('./signatures.json', 'utf-8', function(err, data) {
+			if (err) throw err
 
-		var arrayOfObjects = JSON.parse(data)
-		arrayOfObjects.signatures.push({
-			data
+			var arrayOfObjects = JSON.parse(data)
+			arrayOfObjects.signatures.push({
+				data
+			})
 		})
-	})
-	
-	fs.writeFile('./signatures.json', JSON.stringify(arrayOfObjects), 'utf-8', function(err) {
-		if (err) throw err
-	})
-	
+		
+		fs.writeFile('./signatures.json', JSON.stringify(arrayOfObjects), 'utf-8', function(err) {
+			if (err) throw err
+		})
+		
+		window.close();
+	}
+</script>
+</html>
