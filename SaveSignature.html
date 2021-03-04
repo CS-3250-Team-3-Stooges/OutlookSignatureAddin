@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Save Signature Data Form</title>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+		div {
+			padding: 11px;
+			background-color: #d3edda;
+			overflow: hidden;
+		}
+		input[type=text], textarea, select {
+			font: 17px Calibri;
+			width: 100%;
+			padding: 11px;
+			border: 1px solid  #ccc;
+			border-radius: 4px;
+		}
+		input[type=button]{
+			font: 17px Calibri;
+            width: auto;
+            float: right;
+            cursor: pointer;
+            padding: 6px;
+		}
+	</style>
+</head>
+
+<body>
+	<div>
+	
+		<!--Form Elements-->
+		
+		<div>
+			<textarea id="signature" name="signature" placeholder="Write signature..." style="height:100px"></textarea>
+		</div>
+		<div>
+            <input type="button" id="bt" value="Save signature" onclick="saveSignature()" />
+        </div>
+	</div>
+</body>
+
+<script>
+	let saveSignature = () => {
+		var fs = require('fs')
+
+		fs.readFile('./signatures.json', 'utf-8', function(err, data) {
+			if (err) throw err
+
+			var arrayOfObjects = JSON.parse(data)
+		})
+	
+		// Get data from input form
+		const signature = document.getElementById('signature');
+		
+		// Store data
+		let data = 
+			signature.value;
+		
+		// Convert to BLOB
+		const textConvert = new Blob([data], { type: 'text/plain' });
+	}
+		
+	var fs = require('fs')
+
+	fs.readFile('./signatures.json', 'utf-8', function(err, data) {
+		if (err) throw err
+
+		var arrayOfObjects = JSON.parse(data)
+		arrayOfObjects.signatures.push({
+			data
+		})
+	})
+	
+	fs.writeFile('./signatures.json', JSON.stringify(arrayOfObjects), 'utf-8', function(err) {
+		if (err) throw err
+	})
+	
