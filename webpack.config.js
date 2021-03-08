@@ -4,9 +4,20 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const fs = require("fs");
 const webpack = require("webpack");
-
 const urlDev="https://localhost:3000/";
 const urlProd="https://www.contoso.com/"; // CHANGE THIS TO YOUR PRODUCTION DEPLOYMENT LOCATION
+
+// Code by Weston
+var sig = fs.readFileSync("assets/signatures.txt").toString().split("\n");
+for (i in sig) {
+  console.log(sig[i])
+}
+function randomSignature() {
+  var sig = fs.readFileSync('assets/signatures.txt').toString().split("\n");
+  var randomNumber = Math.floor(Math.random() * (sig.length));
+  return sig[randomNumber];
+}
+
 
 module.exports = async (env, options) => {
   const dev = options.mode === "development";
@@ -89,6 +100,12 @@ module.exports = async (env, options) => {
       })
     ],
     devServer: {
+      setup: function (app, server) {
+        app.get('/signature', function (req, res) {
+          var sigs = fs.readFileSync("assets/signatures.txt").toString();
+          res.send(sigs);
+        })
+      },
       headers: {
         "Access-Control-Allow-Origin": "*"
       },      

@@ -1,9 +1,18 @@
 global.Office = () => ({});
+
+//var fs= require('fs');
+
 var config;
 var btnEvent;
+
+//var output = document.getElementById("output");
+
+//  var raw Files = FileReader;
+//}
+
 //var LinkedList = newFunction()
 // The initialize function must be run each time a new page is loaded.
-Office.initialize = function (reason) {
+Office.initialize = function (reason) {   
 };
 
 // prints the list items
@@ -139,7 +148,19 @@ g.insertDefaultGist = insertDefaultGist;
 function multiplyNumbers(x, y) {
   return x * y;
 }
-
+/*
+// Code by Weston
+var sig = fs.readFileSync("assets/signatures.txt").toString().split("\n");
+for (i in sig) {
+  console.log(sig[i])
+}
+function randomSignature() {
+  var sig = fs.readFileSync('assets/signatures.txt').toString().split("\n");
+  var randomNumber = Math.floor(Math.random() * (sig.length));
+  return sig[randomNumber];
+}
+*/
 module.exports = {
   multiplyNumbers : multiplyNumbers
+  //randomSignature: randomSignature
 }
