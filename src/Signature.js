@@ -16,4 +16,15 @@ class Signature {
     editAuthor(new_author) {
         this.author = new_author;
     }
+
+    getSignature() {
+        const signature = "";
+        if(author == "") {
+            signature += this.signature;
+        }
+        else {
+            signature += this.signature + "\n" + this.author;
+        }
+        return signature;
+    }
 }
