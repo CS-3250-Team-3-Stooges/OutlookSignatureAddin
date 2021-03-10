@@ -20,7 +20,17 @@
           var signatures = result.split('\n');
           console.log('hi');
           signatures.forEach(sig => {
-            $('#signatures-list').append(sig);
+            
+            var SigList = $('<div/>').appendTo("#signatures-list")
+
+            var radioItem = $('<input>').addClass('ms-ListItem').addClass('is-selectable')
+            .attr('type', 'radio').attr('name', 'signatures').attr('tabindex', 0).appendTo(SigList).text(sig); // DONT FORGET TO ADD ID WHEN YOU MAKE THE SIGNATURE CLASS OR ENUM!!!!!
+
+            var desc = $('<span/>')
+            .addClass('text-dark').addClass('rounded').addClass('signature-padding')
+            .text(sig)
+            .appendTo(SigList);
+            //$('#signatures-list').append(sig);
           });
         }
       });
@@ -31,12 +41,13 @@
       $('#insert-signature').on('click', function(){
         Office.context.mailbox.item.body.setSelectedDataAsync("'Philip Marshall is the best' - not philip");
       });
-
+      
       $('#random-signature').on('click', function(){
         $.ajax({
           url: "https://localhost:3000/signature",
           type: "GET",
           success: function(result){
+            // Lines 51 - 53 made by Weston
             var signatures = result.split('\n');
             var randomNumber = Math.floor(Math.random() * (signatures.length));
             Office.context.mailbox.item.body.setSelectedDataAsync(signatures[randomNumber]);
