@@ -15,6 +15,7 @@ var btnEvent;
 Office.initialize = function (reason) {   
 };
 
+// Code by weston
 // prints the list items
 //printList()
 //{
@@ -149,11 +150,12 @@ function multiplyNumbers(x, y) {
   return x * y;
 }
 /*
-// Code by Weston
+// Code by Sean
 var sig = fs.readFileSync("assets/signatures.txt").toString().split("\n");
 for (i in sig) {
   console.log(sig[i])
 }
+// Code by Sean
 function randomSignature() {
   var sig = fs.readFileSync('assets/signatures.txt').toString().split("\n");
   var randomNumber = Math.floor(Math.random() * (sig.length));

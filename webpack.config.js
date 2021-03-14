@@ -7,7 +7,7 @@ const webpack = require("webpack");
 const urlDev="https://localhost:3000/";
 const urlProd="https://www.contoso.com/"; // CHANGE THIS TO YOUR PRODUCTION DEPLOYMENT LOCATION
 
-// Code by Weston
+// Code by Sean
 var sig = fs.readFileSync("assets/signatures.txt").toString().split("\n");
 for (i in sig) {
   console.log(sig[i])
@@ -102,9 +102,40 @@ module.exports = async (env, options) => {
     devServer: {
       setup: function (app, server) {
         app.get('/signature', function (req, res) {
+          // Code for reading with fs by sean
           var sigs = fs.readFileSync("assets/signatures.txt").toString();
+
+    
           res.send(sigs);
+        }),
+        /*app.set('/set-signature', function(req, res) {
+          fs.appendFile("assets/signatures.txt", signature, (err) => {
+            if (err) {
+              console.log(err);
+            }
+            else {
+              console.log(signature);
+            }
+          });
+        })*/
+
+        app.get('/set-signature', function (req, res) {
+          // Code for reading with fs by sean
+          var newSignature = req.param("newSignature");
+          fs.appendFile("assets/signatures.txt", '\n' + newSignature, (err) =>
+          {
+            if (err) {
+              console.log(err);
+            }
+            else {
+              var sigs = fs.readFileSync("assets/signatures.txt").toString();
+
+              console.log(sigs);
+              res.send(sigs);
+            }
+          });
         })
+        
       },
       headers: {
         "Access-Control-Allow-Origin": "*"
