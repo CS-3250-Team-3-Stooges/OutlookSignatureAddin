@@ -1,23 +1,109 @@
+
 (function(){
   'use strict';
-
+  console.log("dffgfg");
   var config;
   var settingsDialog;
 
   Office.initialize = function(reason){
-
+    console.log("dffgfg");
     jQuery(document).ready(function(){
+
 
       config = getConfig();
 
-      // Check if add-in is configured.
-      if (config && config.gitHubUserName) {
-        // If configured, load the gist list.
-        loadGists(config.gitHubUserName);
-      } else {
-        // Not configured yet.
-        $('#not-configured').show();
-      }
+      // loading in signatures for selection
+      $.ajax({
+        url: "https://localhost:3000/signature",
+        type: "GET",
+        success: function(result){
+          var sigID = 0;
+          var signatures = result.split('\n');
+          console.log('hi');
+          signatures.forEach(sig => {
+            
+            var SigList = $('<div/>').appendTo("#signatures-list")
+
+            var radioItem = $('<input>').addClass('ms-ListItem').addClass('is-selectable').val(sigID).attr('onclick', "onSignatureSelected()")
+            .attr('type', 'radio').attr('name', 'signature-radio').attr('tabindex', 0).attr('id', 'radioButton').appendTo(SigList); // DONT FORGET TO ADD ID WHEN YOU MAKE THE SIGNATURE CLASS OR ENUM!!!!!
+            console.log(radioItem.val());
+
+            var desc = $('<span/>')
+            .addClass('text-dark').addClass('rounded').addClass('signature-padding').addClass('is-selectable')
+            .text(sig)
+            .appendTo(SigList);
+            //$('#signatures-list').append(sig);
+
+            sigID += 1;
+          });
+        }
+      });
+
+      console.log("still alive");
+      
+      /*$('#signatures-list').on('click', function(){
+        console.log('selected');
+        onSignatureSelected();
+      })*/
+
+      $('#insert-signature').on('click', function(){
+        var sigID = -1;
+        var radioButtons = document.getElementsByName('signature-radio');
+        var i = 0;
+        while (i < radioButtons.length) {
+          if(radioButtons[i].checked)
+          {
+            sigID = i;
+            break;
+          }
+          i++;
+        }
+
+        $.ajax({
+          url: "https://localhost:3000/signature",
+          type: "GET",
+          success: function(result){
+            var signatures = result.split('\n');
+
+            var selectedSignature = signatures[sigID];
+
+            Office.context.mailbox.item.body.setSelectedDataAsync(selectedSignature);
+          }
+        });
+      });
+      
+      $('#random-signature').on('click', function(){
+        $.ajax({
+          url: "https://localhost:3000/signature",
+          type: "GET",
+          success: function(result){
+            // Lines 51 - 53 made by Weston
+            var signatures = result.split('\n');
+            var randomNumber = Math.floor(Math.random() * (signatures.length));
+            Office.context.mailbox.item.body.setSelectedDataAsync(signatures[randomNumber]);
+          }
+        });
+      });
+      $('#save-signature').on('click', function(){
+
+        var newSig = $('#new-signature').val();
+
+        $.ajax({
+          url: "https://localhost:3000/set-signature?newSignature=" + newSig,
+          type: "GET"
+        })
+      })
+
+      /*$('#radioButton').on('click', function() {
+        console.log("clicked");
+        onSignatureSelected();
+      })*/
+
+      
+      $('#manage-signatures').on('click', function(){
+
+        window.open("https://localhost:3000/src/taskpane/editSignature.html", "", "width=400, height=800");
+      })
 
       // When insert button is selected, build the content
       // and insert into the body.
@@ -65,12 +151,11 @@
       })
     });
   };
-  
+
   function loadGists(user) {
     $('#error-display').hide();
     $('#not-configured').hide();
     $('#gist-list-container').show();
-
     getUserGists(user, function(gists, error) {
       if (error) {
 
@@ -82,16 +167,10 @@
   }
 
   function onGistSelected() {
-    $('#insert-button').removeAttr('disabled');
+    $('#insert-signature').removeAttr('disabled');
+    $('#manage-signatures').removeAttr('disabled');
     $('.ms-ListItem').removeClass('is-selected').removeAttr('checked');
     $(this).children('.ms-ListItem').addClass('is-selected').attr('checked', 'checked');
-  }
-
-  function showError(error) {
-    $('#not-configured').hide();
-    $('#gist-list-container').hide();
-    $('#error-display').text(error);
-    $('#error-display').show();
   }
 
   function receiveMessage(message) {
