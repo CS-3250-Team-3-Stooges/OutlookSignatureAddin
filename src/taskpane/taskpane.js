@@ -1,18 +1,18 @@
 
 (function(){
   'use strict';
-  console.log("dffgfg");
   var config;
+  var signatureList;
   var settingsDialog;
 
   Office.initialize = function(reason){
-    console.log("dffgfg");
     jQuery(document).ready(function(){
 
 
       config = getConfig();
+      getSignatures("signature");
 
-      // loading in signatures for selection
+      /*// loading in signatures for selection
       $.ajax({
         url: "https://localhost:3000/signature",
         type: "GET",
@@ -25,7 +25,7 @@
             var SigList = $('<div/>').appendTo("#signatures-list")
 
             var radioItem = $('<input>').addClass('ms-ListItem').addClass('is-selectable').val(sigID).attr('onclick', "onSignatureSelected()")
-            .attr('type', 'radio').attr('name', 'signature-radio').attr('tabindex', 0).attr('id', 'radioButton').appendTo(SigList); // DONT FORGET TO ADD ID WHEN YOU MAKE THE SIGNATURE CLASS OR ENUM!!!!!
+            .attr('type', 'radio').attr('name', 'signature-radio').attr('tabindex', 0).attr('id', 'radioButton').appendTo(SigList);
             console.log(radioItem.val());
 
             var desc = $('<span/>')
@@ -37,11 +37,12 @@
             sigID += 1;
           });
         }
+
+        
       });
 
-      console.log("still alive");
-      
-      /*$('#signatures-list').on('click', function(){
+
+      $('#signatures-list').on('click', function(){
         console.log('selected');
         onSignatureSelected();
       })*/
@@ -58,16 +59,16 @@
           }
           i++;
         }
-
+        
         $.ajax({
           url: "https://localhost:3000/signature",
           type: "GET",
           success: function(result){
             var signatures = result.split('\n');
 
-            var selectedSignature = signatures[sigID];
+            var selectedSignature = "<br> " + signatures[sigID] + " <br>";
 
-            Office.context.mailbox.item.body.setSelectedDataAsync(selectedSignature);
+            Office.context.mailbox.item.body.setSelectedDataAsync(selectedSignature, {coercionType: 'html'});
           }
         });
       });
@@ -80,7 +81,10 @@
             // Lines 51 - 53 made by Weston
             var signatures = result.split('\n');
             var randomNumber = Math.floor(Math.random() * (signatures.length));
-            Office.context.mailbox.item.body.setSelectedDataAsync(signatures[randomNumber]);
+
+            var randomSignature = "<br> " + signatures[randomNumber] + " <br>";
+
+            Office.context.mailbox.item.body.setSelectedDataAsync(randomSignature, {coercionType: 'html'});
           }
         });
       });
@@ -107,7 +111,7 @@
 
       // When insert button is selected, build the content
       // and insert into the body.
-      $('#insert-button').on('click', function(){
+      //$('#insert-button').on('click', function(){
         /*var gistId = $('.ms-ListItem.is-selected').val();
         getGist(gistId, function(gist, error) {
           if (gist) {
@@ -119,7 +123,7 @@
                       showError('Could not insert gist: ' + result.error.message);
                     }*/
 
-                    Office.context.mailbox.item.body.setSelectedDataAsync("Philip Marshall");
+           //         Office.context.mailbox.item.body.setSelectedDataAsync("Philip Marshall");
                 /*});
               } else {
                 showError('Could not create insertable content: ' + error);
@@ -129,7 +133,7 @@
             showError('Could not retrieve gist: ' + error);
           }
         });*/
-      });
+      //});
 
       // When the settings icon is selected, open the settings dialog.
       $('#settings-icon').on('click', function(){
@@ -166,6 +170,11 @@
     });
   }
 
+  function onSignatureIsSelected(){
+    $('#insert-signature').removeAttr('disabled');
+    $(this).children('.ms-ListItem').addClass('is-selected').attr('checked', 'checked');
+  }
+  
   function onGistSelected() {
     $('#insert-signature').removeAttr('disabled');
     $('#manage-signatures').removeAttr('disabled');
