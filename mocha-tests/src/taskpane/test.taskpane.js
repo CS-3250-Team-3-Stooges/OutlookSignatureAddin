@@ -1,6 +1,5 @@
-
+global.$ = global.jQuery = require('jquery');
 const assert = require('chai').assert;
-const randomSignature = require('../../../src/taskpane/taskpane.js').randomSignature;
 
 /*describe('Taskpane', function () {
     describe('#randomSignature()', function () {

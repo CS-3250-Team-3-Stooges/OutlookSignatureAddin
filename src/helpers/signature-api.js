@@ -1,3 +1,5 @@
+
+
 /** getSignatures will grab the signature text file and return that string back to the caller for storing
  *  @param {string} endpoint - The endpoint for the url to find the signature file
  */
@@ -13,8 +15,20 @@ function getSignatures (endpoint) {
       }); 
   }
 
-  function showData(data1) {
-    console.log(data1);
+/** getRadioID will look for the selected radio button on the taskpane and return the id for that signature */
+function getRadioID(){
+  var sigID = -1;
+  var radioButtons = document.getElementsByName('signature-radio');
+  var i = 0;
+  while (i < radioButtons.length) {
+    if(radioButtons[i].checked)
+    {
+      sigID = i;
+      break;
+    }
+    i++;
+  }
+  return sigID;
 }
  
   /** Takes in html tag and signature list to populate the task pane with signatures
@@ -38,3 +52,8 @@ function getSignatures (endpoint) {
     });
   }
   
+  module.exports = {
+    getSignatures: getSignatures,
+    getRadioID: getRadioID,
+    buildSignatureList: buildSignatureList
+  }
