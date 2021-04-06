@@ -6,7 +6,7 @@
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="Team-3-Stooges"/>
   <Description DefaultValue="An app for either manual or random selection of signatures to be added to an email. Also allows for addition of new signatures."/>
-  <IconUrl DefaultValue="https://localhost:3000/assets/lemonkeart.png"/>
+  <IconUrl DefaultValue="https://localhost:3000/assets/signature_logo.png"/>
   <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-128.png"/>
   <SupportUrl DefaultValue="https://localhost:3000"/>
   <AppDomains>
@@ -86,20 +86,20 @@
     </Hosts>
 <Resources>
   <bt:Images>
-    <bt:Image id="Icon.16x16" DefaultValue="https://localhost:3000/assets/lemonkeart.png"/>
-    <bt:Image id="Icon.32x32" DefaultValue="https://localhost:3000/assets/lemonkeart.png"/>
-    <bt:Image id="Icon.80x80" DefaultValue="https://localhost:3000/assets/lemonkeart.png"/>
+    <bt:Image id="Icon.16x16" DefaultValue="https://localhost:3000/assets/signature_logo.png"/>
+    <bt:Image id="Icon.32x32" DefaultValue="https://localhost:3000/assets/signature_logo.png"/>
+    <bt:Image id="Icon.80x80" DefaultValue="https://localhost:3000/assets/signature_logo.png"/>
   </bt:Images>
   <bt:Urls>
     <bt:Url id="Commands.Url" DefaultValue="https://localhost:3000/commands.html"/>
     <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/taskpane.html"/>
   </bt:Urls>
   <bt:ShortStrings>
-    <bt:String id="GroupLabel" DefaultValue="Git the gist"/>
-    <bt:String id="TaskpaneButton.Label" DefaultValue="Insert gist"/>
-    <bt:String id="TaskpaneButton.Title" DefaultValue="Insert gist"/>
-    <bt:String id="FunctionButton.Label" DefaultValue="Insert default gist"/>
-    <bt:String id="FunctionButton.Title" DefaultValue="Insert default gist"/>
+    <bt:String id="GroupLabel" DefaultValue="Signatures"/>
+    <bt:String id="TaskpaneButton.Label" DefaultValue="Insert Signature"/>
+    <bt:String id="TaskpaneButton.Title" DefaultValue="Insert Signature"/>
+    <bt:String id="FunctionButton.Label" DefaultValue="Insert default Signature"/>
+    <bt:String id="FunctionButton.Title" DefaultValue="Insert default Signature"/>
   </bt:ShortStrings>
   <bt:LongStrings>
     <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Displays a list of your gists and allows you to insert their contents into the current message."/>

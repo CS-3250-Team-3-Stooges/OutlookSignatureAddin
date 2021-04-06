@@ -71,7 +71,36 @@
           }
         });
       });
-      
+
+      $('#delete-signature').on('click', function(){
+
+        var update = $('#pop-signature').val();
+
+        var signID = - 1;
+        var radioButtons = document.getElementsByName('signature-radio');
+        var i = 0;
+        while (i < radioButtons.length){
+          if(radioButtons.length){
+            signID = i;
+            break;
+          }
+          i++;
+      }
+      $.ajax({
+        url: "https://localhost:3000/set-signature",
+        type: "GET",
+        success: function(result){
+
+          var signatures = result.split('\n');
+
+          var selectedSignature = signatures[sigID];
+          
+         // Office.context.mailbox.item.body.setSelectedDataAsync(selectedSignature);
+        }
+      });
+      });
+
+
       $('#random-signature').on('click', function(){
         $.ajax({
           url: "https://localhost:3000/signature",
@@ -102,8 +131,9 @@
       
       $('#manage-signatures').on('click', function(){
 
-        window.open("https://localhost:3000/src/taskpane/editSignature.html", "", "width=400, height=800");
+        window.open("https://localhost:3000/src/taskpane/editSignature.html", "", "width=900, height=400");
       })
+
 
       // When insert button is selected, build the content
       // and insert into the body.
