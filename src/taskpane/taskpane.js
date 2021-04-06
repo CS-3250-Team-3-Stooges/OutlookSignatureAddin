@@ -5,13 +5,16 @@
   var signatureList;
   var settingsDialog;
 
+  // Obtain the signature list right from the start
+  $.when(getSignatures("signature")).then(storeSignatures);
+
   Office.initialize = function(reason){
     jQuery(document).ready(function(){
 
 
       config = getConfig();
-      getSignatures("signature");
-
+      buildSignatureList('#signatures-list', signatureList);
+      
       /*// loading in signatures for selection
       $.ajax({
         url: "https://localhost:3000/signature",
@@ -60,17 +63,11 @@
           i++;
         }
         
-        $.ajax({
-          url: "https://localhost:3000/signature",
-          type: "GET",
-          success: function(result){
-            var signatures = result.split('\n');
 
-            var selectedSignature = "<br> " + signatures[sigID] + " <br>";
+        var selectedSignature = "<br> " + signatureList[sigID] + " <br>";
 
-            Office.context.mailbox.item.body.setSelectedDataAsync(selectedSignature, {coercionType: 'html'});
-          }
-        });
+        Office.context.mailbox.item.body.setSelectedDataAsync(selectedSignature, {coercionType: 'html'});
+
       });
       
       $('#random-signature').on('click', function(){
@@ -193,5 +190,10 @@
 
   function dialogClosed(message) {
     settingsDialog = null;
+  }
+
+  function storeSignatures(demsigs)
+  {
+    signatureList = demsigs.split("\n");
   }
 })();
