@@ -99,6 +99,8 @@ module.exports = async (env, options) => {
         app.get('/set-signature', function (req, res) {
           // Code for reading with fs by sean
           var newSignature = req.param("newSignature");
+
+          // Code from philip
           fs.appendFile("assets/signatures.txt", '\n' + newSignature, (err) =>
           {
             if (err) {
@@ -111,7 +113,36 @@ module.exports = async (env, options) => {
               res.send(sigs);
             }
           });
-        })
+        }),
+        // written by philip with help from jose and weston
+        app.get('/delete-signature', function (req, res) {
+          var signatures = fs.readFileSync("assets/signatures.txt").toString();
+          
+          signatures = signatures.split('\n');
+
+          var signatureID = req.param("deleteSignature");
+
+          if(signatureID){
+          signatures.splice(signatureID,1);
+
+          var i = 0;
+          var stringSignature = "";
+          while (i < signatures.length){
+            stringSignature = stringSignature + signatures[i] + "\n";
+            i++;
+          }
+          fs.writeFile("assets/signatures.txt", stringSignature, function(err) {
+            if (err)
+              console.log(err);
+            else{
+              signatures = fs.readFileSync("assets/signatures.txt").toString();
+              console.log(signatures);
+              res.send(signatures);
+            }
+          });
+          console.log(stringSignature);
+        }
+          });
         
       },
       headers: {
