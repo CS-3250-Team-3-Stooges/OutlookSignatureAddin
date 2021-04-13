@@ -158,6 +158,11 @@ html, body {
     width:100%;
     text-align: center;
 }
+
+/* JOSE - https://www.w3schools.com/css/tryit.asp?filename=trycss_buttons_animate3*/
+.inner:active{
+  transform: translateY(4px);
+}
 .inner
 {
     display: inline-block;

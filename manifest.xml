@@ -7,7 +7,7 @@
   <DisplayName DefaultValue="Team-3-Stooges"/>
   <Description DefaultValue="An app for either manual or random selection of signatures to be added to an email. Also allows for addition of new signatures."/>
   <IconUrl DefaultValue="https://localhost:3000/assets/Signature.png"/>
-  <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-128.png"/>
+  <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/Signature.png"/>
   <SupportUrl DefaultValue="https://localhost:3000"/>
   <AppDomains>
     <AppDomain>https://www.contoso.com</AppDomain>
@@ -86,9 +86,9 @@
     </Hosts>
 <Resources>
   <bt:Images>
-    <bt:Image id="Icon.16x16" DefaultValue="https://localhost:3000/assets/signature_logo.png"/>
-    <bt:Image id="Icon.32x32" DefaultValue="https://localhost:3000/assets/signature_logo.png"/>
-    <bt:Image id="Icon.80x80" DefaultValue="https://localhost:3000/assets/signature_logo.png"/>
+    <bt:Image id="Icon.16x16" DefaultValue="https://localhost:3000/assets/Signature.png"/>
+    <bt:Image id="Icon.32x32" DefaultValue="https://localhost:3000/assets/Signature.png"/>
+    <bt:Image id="Icon.80x80" DefaultValue="https://localhost:3000/assets/Signature.png"/>
   </bt:Images>
   <bt:Urls>
     <bt:Url id="Commands.Url" DefaultValue="https://localhost:3000/commands.html"/>

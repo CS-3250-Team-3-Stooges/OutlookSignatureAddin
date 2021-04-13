@@ -7,18 +7,6 @@ const webpack = require("webpack");
 const urlDev="https://localhost:3000/";
 const urlProd="https://www.contoso.com/"; // CHANGE THIS TO YOUR PRODUCTION DEPLOYMENT LOCATION
 
-/*/ Code by Sean
-var sig = fs.readFileSync("assets/signatures.txt").toString().split("\n");
-for (i in sig) {
-  console.log(sig[i])
-}
-function randomSignature() {
-  var sig = fs.readFileSync('assets/signatures.txt').toString().split("\n");
-  var randomNumber = Math.floor(Math.random() * (sig.length));
-  return sig[randomNumber];
-}
-*/
-
 module.exports = async (env, options) => {
   const dev = options.mode === "development";
   const buildType = dev ? "dev" : "prod";
@@ -108,17 +96,25 @@ module.exports = async (env, options) => {
     
           res.send(sigs);
         }),
-        /*app.set('/set-signature', function(req, res) {
-          fs.appendFile("assets/signatures.txt", signature, (err) => {
+        app.get('/set-signature', function (req, res) {
+          // Code for reading with fs by sean
+          var newSignature = req.param("newSignature");
+
+          // Code from philip
+          fs.appendFile("assets/signatures.txt", '\n' + newSignature, (err) =>
+          {
             if (err) {
               console.log(err);
             }
             else {
-              console.log(signature);
+              var sigs = fs.readFileSync("assets/signatures.txt").toString();
+
+              console.log(sigs);
+              res.send(sigs);
             }
           });
-        })*/
-
+        }),
+        // written by philip with help from jose and weston
         app.get('/delete-signature', function (req, res) {
           var signatures = fs.readFileSync("assets/signatures.txt").toString();
           
@@ -146,24 +142,7 @@ module.exports = async (env, options) => {
           });
           console.log(stringSignature);
         }
-        });
-
-        app.get('/set-signature', function (req, res) {
-          // Code for reading with fs by sean
-          var newSignature = req.param("newSignature");
-          fs.appendFile("assets/signatures.txt", '\n' + newSignature, (err) =>
-          {
-            if (err) {
-              console.log(err);
-            }
-            else {
-              var sigs = fs.readFileSync("assets/signatures.txt").toString();
-
-              console.log(sigs);
-              res.send(sigs);
-            }
           });
-        })
         
       },
       headers: {
