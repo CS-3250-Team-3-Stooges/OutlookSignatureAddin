@@ -7,7 +7,7 @@ const webpack = require("webpack");
 const urlDev="https://localhost:3000/";
 const urlProd="https://www.contoso.com/"; // CHANGE THIS TO YOUR PRODUCTION DEPLOYMENT LOCATION
 
-// Code by Sean
+/*/ Code by Sean
 var sig = fs.readFileSync("assets/signatures.txt").toString().split("\n");
 for (i in sig) {
   console.log(sig[i])
@@ -17,7 +17,7 @@ function randomSignature() {
   var randomNumber = Math.floor(Math.random() * (sig.length));
   return sig[randomNumber];
 }
-
+*/
 
 module.exports = async (env, options) => {
   const dev = options.mode === "development";

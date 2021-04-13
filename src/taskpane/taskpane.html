@@ -38,38 +38,32 @@
     </section>
   </main>
   
- <div id="outer">
-    <div class="inner"></div>
+  <div class="inner">
+    <button class="btn buttonPadding btn-light" id="insert-signature" tabindex=0 disabled>
+      <span class="ms-Button-label">Insert Signature</span>
+    </button>
+  </div>
+  <div id="outer">
+    <div class="inner">
       <button class="btn btn-info" id="random-signature" tabindex=0 enabled>
         <span class="ms-Button-label">Random Signature</span>
       </button>
     </div>
-
     <div class="inner">
-      <p align="Center"> 
-      <button class="btn btn-info" id="insert-signature" tabindex=0 enabled>
-        <span class="ms-Button-label">Insert Signature</span>s
+      <button class="btn btn-info" id="manage-signatures" tabindex=0 enabled>
+        <span class="ms-Button-label">Edit Signatures</span>s
       </button>
     </div>
-
+    <div class="inner">
+      <input class="ms-TextField-field" id="new-signature" type="text" value="" placeholder="Please enter a signature">
+      <button class="btn btn-info" id="save-signature" tabindex=0 enabled>
+        <span class="ms-Button-label">Save Signature</span>
+      </button>
+    </div>
     <div class="inner">
       <p align="Center"> 
       <button class="btn btn-info" id="delete-signature" tabindex=0 enabled>
         <span class="ms-Button-label">Delete Signatures</span>
-      </button>
-    </div>
-
-    <div class="inner">
-      <p align="Center"> 
-      <button class="btn btn-info" id="manage-signatures" tabindex=0 enabled>
-        <span class="ms-Button-label">Edit Signatures</span>
-      </button>
-    </div>
-    <div class="inner">
-      <p align="Center"> 
-      <input class="ms-TextField-field" id="new-signature" type="text" value="" placeholder="Please enter a signature">
-      <button class="btn btn-info" id="save-signature" tabindex=0 enabled>
-        <span class="ms-Button-label">Save Signature</span>
       </button>
     </div>
   </div> 
