@@ -4,7 +4,6 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const fs = require("fs");
 const webpack = require("webpack");
-
 const urlDev="https://localhost:3000/";
 const urlProd="https://www.contoso.com/"; // CHANGE THIS TO YOUR PRODUCTION DEPLOYMENT LOCATION
 
@@ -89,6 +88,32 @@ module.exports = async (env, options) => {
       })
     ],
     devServer: {
+      setup: function (app, server) {
+        app.get('/Account', function (req, res) {
+          // Code for reading with fs by sean
+          var accounts = fs.readFileSync("assets/Account.txt").toString();
+
+    
+          res.send(accounts);
+        }),
+          app.get('/set-Account', function (req, res) {
+          // Code for reading with fs by sean
+          var newSignature = req.param("newSignature");
+          fs.appendFile("assets/Account.txt", '\n' + newSignature, (err) =>
+          {
+            if (err) {
+              console.log(err);
+            }
+            else {
+              var sigs = fs.readFileSync("assets/.txt").toString();
+
+              console.log(sigs);
+              res.send(sigs);
+            }
+          });
+        })
+        
+      },
       headers: {
         "Access-Control-Allow-Origin": "*"
       },      
