@@ -35,7 +35,7 @@ function getUserGists(user, callback) {
         .addClass('ms-ListItem-secondaryText')
         .text(' - ' + buildFileList(gist.files))
         .appendTo(listItem);
-  
+        
       var updated = new Date(gist.updated_at);
   
       var desc = $('<span/>')
