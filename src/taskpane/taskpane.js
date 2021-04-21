@@ -4,8 +4,8 @@
   var config;
   var signatureList;
 
-  $.when(getSignatures("signature")).then(storeSignatures);
- 
+  
+  Office.onReady($.when(getSignatures("signature")).then(storeSignatures));
   Office.initialize = function(reason){
     jQuery(document).ready(function(){
       
@@ -40,16 +40,37 @@
         buildSignatureList('#signatures-list', signatureList);
       })
 
-      $('#manage-signatures').on('click', function(){
 
-        window.open("https://localhost:3000/src/taskpane/editSignature.html", "", "width=400, height=800");
-      })
+      //Written by Jose with the help of Weston
+      $('#delete-signature').on('click', function(){
 
+
+        var signID = - 1;
+        var deleteSig;
+        var radioButtons = document.getElementsByName('signature-radio');
+        var i = 0;
+        while (i < radioButtons.length){
+          if(radioButtons[i].checked){
+            signID = i;
+            break;
+          }
+          i++;
+      }
+
+      // written by philip
+        $.ajax({
+          url: "https://localhost:3000/delete-signature?deleteSignature=" + signID,
+          type: "GET"
+        });
+        
+        buildSignatureList('#signatures-list', signatureList);
+      });
     });
   };
 
   function storeSignatures(demsigs)
   {
+    console.log(demsigs);
     signatureList = demsigs.split("\n");
   }
 })();

@@ -3,7 +3,7 @@
 /** getSignatures will grab the signature text file and return that string back to the caller for storing
  *  @param {string} endpoint - The endpoint for the url to find the signature file
  */
-function getSignatures (endpoint) {
+ function getSignatures (endpoint) {
   var sigList;
   console.log(endpoint);
     return $.ajax({
@@ -48,12 +48,17 @@ function getRadioID(){
         .addClass('text-dark').addClass('rounded').addClass('signature-padding').addClass('is-selectable')
         .text(sig)
         .appendTo(SigList);
-      sigID = sigID + 1;
-    });
+      sigID = sigID + 1;}
+    );
+  }
+  
+  function clearSignatureList(parent){
+    $(parent).empty();
   }
   
   module.exports = {
     getSignatures: getSignatures,
     getRadioID: getRadioID,
-    buildSignatureList: buildSignatureList
+    buildSignatureList: buildSignatureList,
+    clearSignatureList: clearSignatureList
   }
