@@ -40,11 +40,6 @@
         buildSignatureList('#signatures-list', signatureList);
       })
 
-      $('#manage-signatures').on('click', function(){
-
-        window.open("https://localhost:3000/src/taskpane/editSignature.html", "", "width=400, height=800");
-      })
-
 
       //Written by Jose with the help of Weston
       $('#delete-signature').on('click', function(){
@@ -75,6 +70,7 @@
 
   function storeSignatures(demsigs)
   {
+    console.log(demsigs);
     signatureList = demsigs.split("\n");
   }
 })();

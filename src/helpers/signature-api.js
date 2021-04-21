@@ -38,7 +38,6 @@ function getRadioID(){
   function buildSignatureList(parent, sigList) {
     var sigID = 0
     sigList.forEach(function(sig) {
-      if(sig != ""){
       var SigList = $('<div/>').appendTo(parent);
   
       var radioItem = $('<input>').addClass('ms-ListItem').addClass('is-selectable').val(sigID).attr('onclick', "onSignatureSelected()")
@@ -50,7 +49,7 @@ function getRadioID(){
         .text(sig)
         .appendTo(SigList);
       sigID = sigID + 1;}
-    });
+    );
   }
   
   function clearSignatureList(parent){

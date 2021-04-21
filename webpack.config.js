@@ -124,13 +124,27 @@ module.exports = async (env, options) => {
 
           if(signatureID){
           signatures.splice(signatureID,1);
-
+          fs.writeFile("assets/logs.txt", signatures.length.toString(), function(err){});
+          
+          var lengthVar = signatures.length;
           var i = 0;
           var stringSignature = "";
+          signatures.splice(signatures.length, 1);
           while (i < signatures.length){
-            stringSignature = stringSignature + signatures[i] + "\n";
-            i++;
+            if(i < lengthVar - 1)
+            {
+                stringSignature = stringSignature + signatures[i] + "\n";
+                i++;
+              
+          } 
+           else
+            {
+              stringSignature = stringSignature + signatures[i];
+              i++;
+              lengthVar = lengthVar - 1;
+           }
           }
+
           fs.writeFile("assets/signatures.txt", stringSignature, function(err) {
             if (err)
               console.log(err);
