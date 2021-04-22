@@ -4,7 +4,6 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const fs = require("fs");
 const webpack = require("webpack");
-
 const urlDev="https://localhost:3000/";
 const urlProd="https://www.contoso.com/"; // CHANGE THIS TO YOUR PRODUCTION DEPLOYMENT LOCATION
 
@@ -89,6 +88,77 @@ module.exports = async (env, options) => {
       })
     ],
     devServer: {
+      setup: function (app, server) {
+        app.get('/signature', function (req, res) {
+          // Code for reading with fs by sean
+          var sigs = fs.readFileSync("assets/signatures.txt").toString();
+
+    
+          res.send(sigs);
+        }),
+        app.get('/set-signature', function (req, res) {
+          // Code for reading with fs by sean
+          var newSignature = req.param("newSignature");
+
+          // Code from philip
+          fs.appendFile("assets/signatures.txt", '\n' + newSignature, (err) =>
+          {
+            if (err) {
+              console.log(err);
+            }
+            else {
+              var sigs = fs.readFileSync("assets/signatures.txt").toString();
+
+              console.log(sigs);
+              res.send(sigs);
+            }
+          });
+        }),
+        // written by philip with help from jose and weston
+        app.get('/delete-signature', function (req, res) {
+          var signatures = fs.readFileSync("assets/signatures.txt").toString();
+          
+          signatures = signatures.split('\n');
+
+          var signatureID = req.param("deleteSignature");
+
+          if(signatureID){
+          signatures.splice(signatureID,1);
+          fs.writeFile("assets/logs.txt", signatures.length.toString(), function(err){});
+          
+          var lengthVar = signatures.length;
+          var i = 0;
+          var stringSignature = "";
+          signatures.splice(signatures.length, 1);
+          while (i < signatures.length){
+            if(i < lengthVar - 1)
+            {
+                stringSignature = stringSignature + signatures[i] + "\n";
+                i++;
+              
+          } 
+           else
+            {
+              stringSignature = stringSignature + signatures[i];
+              i++;
+              lengthVar = lengthVar - 1;
+           }
+          }
+
+          fs.writeFile("assets/signatures.txt", stringSignature, function(err) {
+            if (err)
+              console.log(err);
+            else{
+              signatures = fs.readFileSync("assets/signatures.txt").toString();
+              console.log(signatures);
+              res.send(signatures);
+            }
+          });
+          console.log(stringSignature);
+        }
+          });
+        
+      },
       headers: {
         "Access-Control-Allow-Origin": "*"
       },      

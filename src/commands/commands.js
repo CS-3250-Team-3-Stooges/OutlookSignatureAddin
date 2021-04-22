@@ -1,10 +1,61 @@
 global.Office = () => ({});
+
+//var fs= require('fs');
+
 var config;
 var btnEvent;
 
+//var output = document.getElementById("output");
+
+//  var raw Files = FileReader;
+//}
+
+//var LinkedList = newFunction()
 // The initialize function must be run each time a new page is loaded.
-Office.initialize = function (reason) {
+Office.initialize = function (reason) {   
 };
+
+// Code by weston
+// prints the list items
+//printList()
+//{
+    //var curr = this.head;
+    //var str = "";
+    //while (curr) {
+        //str += curr.element + " ";
+        //curr = curr.next;
+    //}
+    //console.log(str);
+//}
+// random function for LinkedList implementation
+//function random(result) {
+  //var LinkedList = require('linked-list')
+
+  //var Signature1 = newLinkedList.item('Weston J. Lake')
+  //var Signature2 = newLinkedList.item('Weston Lake')
+  //var Signature3 = newLinkedList.item('weston j. lake')
+  //var Signature4 = newLinkedList.item('WJL')
+  //var Signature5 = newLinkedList.item('WL')
+  //var list = newLinkedList(Signature1, Signature2, Signature3, Signature4, Signature5)
+  //var randomNum = math.random(list.size)
+  //if (randomNum != 0) {
+    //while (randomNum >= 0) {
+      //list.head.next
+      //randomNum--
+      //console.log(list.Signature1);
+      //list.printList();
+    //}
+    //return list.head;
+  //}
+  //else {
+    //console.log(Signature1);
+    //list.printList();
+    //return list.head;
+  //}
+//}
+
+// addEventHandler method
+//object.addEventHandler("click", random());
 
 // Add any UI-less function here.
 function showError(error) {
@@ -98,7 +149,20 @@ g.insertDefaultGist = insertDefaultGist;
 function multiplyNumbers(x, y) {
   return x * y;
 }
-
+/*
+// Code by Sean
+var sig = fs.readFileSync("assets/signatures.txt").toString().split("\n");
+for (i in sig) {
+  console.log(sig[i])
+}
+// Code by Sean
+function randomSignature() {
+  var sig = fs.readFileSync('assets/signatures.txt').toString().split("\n");
+  var randomNumber = Math.floor(Math.random() * (sig.length));
+  return sig[randomNumber];
+}
+*/
 module.exports = {
   multiplyNumbers : multiplyNumbers
+  //randomSignature: randomSignature
 }

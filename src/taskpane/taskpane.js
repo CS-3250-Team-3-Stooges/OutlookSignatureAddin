@@ -1,109 +1,76 @@
+
 (function(){
   'use strict';
-
   var config;
-  var settingsDialog;
+  var signatureList;
 
+  
+  Office.onReady($.when(getSignatures("signature")).then(storeSignatures));
   Office.initialize = function(reason){
-
     jQuery(document).ready(function(){
-
+      
       config = getConfig();
+      
+      buildSignatureList('#signatures-list', signatureList);
 
-      // Check if add-in is configured.
-      if (config && config.gitHubUserName) {
-        // If configured, load the gist list.
-        loadGists(config.gitHubUserName);
-      } else {
-        // Not configured yet.
-        $('#not-configured').show();
+
+      $('#insert-signature').on('click', function(){
+
+        var radioID = getRadioID();
+        var selectedSignature = "<br> " + signatureList[radioID] + " <br>";
+        Office.context.mailbox.item.body.setSelectedDataAsync(selectedSignature, {coercionType: 'html'});
+
+      });
+      
+      $('#random-signature').on('click', function(){
+            var randomNumber = Math.floor(Math.random() * (signatureList.length));
+            var randomSignature = "<br> " + signatureList[randomNumber] + " <br>";
+            Office.context.mailbox.item.body.setSelectedDataAsync(randomSignature, {coercionType: 'html'});
+      });
+      
+      $('#save-signature').on('click', function(){
+
+        var newSig = $('#new-signature').val();
+
+        $.ajax({
+          url: "https://localhost:3000/set-signature?newSignature=" + newSig,
+          type: "GET"
+        })
+
+        buildSignatureList('#signatures-list', signatureList);
+      })
+
+
+      //Written by Jose with the help of Weston
+      $('#delete-signature').on('click', function(){
+
+
+        var signID = - 1;
+        var deleteSig;
+        var radioButtons = document.getElementsByName('signature-radio');
+        var i = 0;
+        while (i < radioButtons.length){
+          if(radioButtons[i].checked){
+            signID = i;
+            break;
+          }
+          i++;
       }
 
-      // When insert button is selected, build the content
-      // and insert into the body.
-      $('#insert-button').on('click', function(){
-        /*var gistId = $('.ms-ListItem.is-selected').val();
-        getGist(gistId, function(gist, error) {
-          if (gist) {
-            buildBodyContent(gist, function (content, error) {
-              if (content) {
-                Office.context.mailbox.item.body.setSelectedDataAsync(content,
-                  {coercionType: Office.CoercionType.Html}, function(result) {
-                    if (result.status === Office.AsyncResultStatus.Failed) {
-                      showError('Could not insert gist: ' + result.error.message);
-                    }*/
-
-                    Office.context.mailbox.item.body.setSelectedDataAsync("Philip Marshall");
-                /*});
-              } else {
-                showError('Could not create insertable content: ' + error);
-              }
-            });
-          } else {
-            showError('Could not retrieve gist: ' + error);
-          }
-        });*/
-      });
-
-      // When the settings icon is selected, open the settings dialog.
-      $('#settings-icon').on('click', function(){
-        // Display settings dialog.
-        var url = new URI('../src/settings/dialog.html').absoluteTo(window.location).toString();
-        if (config) {
-          // If the add-in has already been configured, pass the existing values
-          // to the dialog.
-          url = url + '?gitHubUserName=' + config.gitHubUserName + '&defaultGistId=' + config.defaultGistId;
-        }
-
-        var dialogOptions = { width: 20, height: 40, displayInIframe: true };
-
-        Office.context.ui.displayDialogAsync(url, dialogOptions, function(result) {
-          settingsDialog = result.value;
-          settingsDialog.addEventHandler(Office.EventType.DialogMessageReceived, receiveMessage);
-          settingsDialog.addEventHandler(Office.EventType.DialogEventReceived, dialogClosed);
+      // written by philip
+        $.ajax({
+          url: "https://localhost:3000/delete-signature?deleteSignature=" + signID,
+          type: "GET"
         });
-      })
+        
+        buildSignatureList('#signatures-list', signatureList);
+      });
     });
   };
-  
-  function loadGists(user) {
-    $('#error-display').hide();
-    $('#not-configured').hide();
-    $('#gist-list-container').show();
 
-    getUserGists(user, function(gists, error) {
-      if (error) {
-
-      } else {
-        $('#gist-list').empty();
-        buildGistList($('#gist-list'), gists, onGistSelected);
-      }
-    });
-  }
-
-  function onGistSelected() {
-    $('#insert-button').removeAttr('disabled');
-    $('.ms-ListItem').removeClass('is-selected').removeAttr('checked');
-    $(this).children('.ms-ListItem').addClass('is-selected').attr('checked', 'checked');
-  }
-
-  function showError(error) {
-    $('#not-configured').hide();
-    $('#gist-list-container').hide();
-    $('#error-display').text(error);
-    $('#error-display').show();
-  }
-
-  function receiveMessage(message) {
-    config = JSON.parse(message.message);
-    setConfig(config, function(result) {
-      settingsDialog.close();
-      settingsDialog = null;
-      loadGists(config.gitHubUserName);
-    });
-  }
-
-  function dialogClosed(message) {
-    settingsDialog = null;
+  function storeSignatures(demsigs)
+  {
+    console.log(demsigs);
+    signatureList = demsigs.split("\n");
   }
 })();
