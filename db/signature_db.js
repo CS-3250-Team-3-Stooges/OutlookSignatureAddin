@@ -4,7 +4,7 @@
  */
 
 const sqlite3 = require('sqlite3').verbose();
-const db_file = 'signature_db.sqlite3'
+const db_file = 'signature_db.sqlite3';
 
 
 // Open new connection
