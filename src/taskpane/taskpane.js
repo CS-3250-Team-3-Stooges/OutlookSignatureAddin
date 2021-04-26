@@ -1,33 +1,45 @@
+var accountList = ["Philip", "Sean", "Weston"];
 
 (function(){
   'use strict';
   var config;
   var signatureList;
 
-  
+  // code by philip
   Office.onReady($.when(getSignatures("signature")).then(storeSignatures));
+  
+
+
   Office.initialize = function(reason){
     jQuery(document).ready(function(){
       
       config = getConfig();
       
-      buildSignatureList('#signatures-list', signatureList);
-
-
+      if(isAccountSelected == false){
+      buildAccountList('#dropdown-menu', accountList, signatureList);
+      $('#account-selection').toggle(true);
+      $('#signature-content').toggle(false);
+      }
+      
+      // code by philip
       $('#insert-signature').on('click', function(){
 
         var radioID = getRadioID();
-        var selectedSignature = "<br> " + signatureList[radioID] + " <br>";
+        console.log(radioID);
+        var selectedSignature = "<br> " + radioID + " <br>";
         Office.context.mailbox.item.body.setSelectedDataAsync(selectedSignature, {coercionType: 'html'});
 
       });
       
+
       $('#random-signature').on('click', function(){
+        // code by sean
             var randomNumber = Math.floor(Math.random() * (signatureList.length));
             var randomSignature = "<br> " + signatureList[randomNumber] + " <br>";
             Office.context.mailbox.item.body.setSelectedDataAsync(randomSignature, {coercionType: 'html'});
       });
       
+      // code by philip
       $('#save-signature').on('click', function(){
 
         var newSig = $('#new-signature').val();
@@ -68,6 +80,7 @@
     });
   };
 
+  // code by philip
   function storeSignatures(demsigs)
   {
     console.log(demsigs);
