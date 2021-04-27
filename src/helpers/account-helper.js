@@ -41,6 +41,7 @@ function onAccountSelected() {
   }
   if(accountID != -1)
   {
+
     accountSelected = accountList[accountID]
     isAccountSelected = true;
     updateAccountSelectionStatus();
@@ -54,3 +55,25 @@ function updateAccountSelectionStatus()
   console.log(accountSelected)
   buildSignatureList('#signatures-list', signatureList, accountSelected);
 }
+
+function getAccountIndices(accountName)
+{
+  var indices = []
+  i = 0;
+
+  signatureList.forEach(function(sig) {
+    console.log(sig.substr(0, accountName.length))
+    if (sig.substr(0, accountName.length) == accountName){
+      indices.push(i);
+    }
+    i++;
+  });
+  
+  return indices;
+  
+}
+
+function getAccount()
+  {
+    return accountSelected;
+  }

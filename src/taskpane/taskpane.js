@@ -15,6 +15,7 @@ var accountList = ["Philip", "Sean", "Weston"];
       
       config = getConfig();
       
+      // code
       if(isAccountSelected == false){
       buildAccountList('#dropdown-menu', accountList, signatureList);
       $('#account-selection').toggle(true);
@@ -24,17 +25,20 @@ var accountList = ["Philip", "Sean", "Weston"];
       // code by philip
       $('#insert-signature').on('click', function(){
 
-        var radioID = getRadioID();
-        console.log(radioID);
-        var selectedSignature = "<br> " + radioID + " <br>";
+        //var signature = getSelectedSignature();
+        var signature = signatureList[getRadioID()];
+        var selectedSignature = "<br> " + signature + " <br>";
         Office.context.mailbox.item.body.setSelectedDataAsync(selectedSignature, {coercionType: 'html'});
 
       });
       
 
       $('#random-signature').on('click', function(){
-        // code by sean
-            var randomNumber = Math.floor(Math.random() * (signatureList.length));
+        // code by sean and philip
+            var accountSigs = getAccountIndices(getAccount());
+            console.log(accountSigs);
+            var randomNumber = Math.floor(Math.random() * (accountSigs.length));
+            randomNumber = accountSigs[randomNumber];
             var randomSignature = "<br> " + signatureList[randomNumber] + " <br>";
             Office.context.mailbox.item.body.setSelectedDataAsync(randomSignature, {coercionType: 'html'});
       });
@@ -56,7 +60,7 @@ var accountList = ["Philip", "Sean", "Weston"];
       //Written by Jose with the help of Weston
       $('#delete-signature').on('click', function(){
 
-
+/*
         var signID = - 1;
         var deleteSig;
         var radioButtons = document.getElementsByName('signature-radio');
@@ -69,11 +73,12 @@ var accountList = ["Philip", "Sean", "Weston"];
           i++;
       }
 
-      // written by philip
-        $.ajax({
-          url: "https://localhost:3000/delete-signature?deleteSignature=" + signID,
-          type: "GET"
-        });
+*/
+      
+      $.ajax({
+        url: "https://localhost:3000/delete-signature?deleteSignature=" + getRadioID() /*signID*/,
+        type: "GET"
+      });
         
         buildSignatureList('#signatures-list', signatureList);
       });
