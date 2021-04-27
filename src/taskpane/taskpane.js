@@ -1,33 +1,49 @@
+var accountList = ["Philip", "Sean", "Weston"];
 
 (function(){
   'use strict';
   var config;
   var signatureList;
 
-  
+  // code by philip
   Office.onReady($.when(getSignatures("signature")).then(storeSignatures));
+  
+
+
   Office.initialize = function(reason){
     jQuery(document).ready(function(){
       
       config = getConfig();
       
-      buildSignatureList('#signatures-list', signatureList);
-
-
+      // code
+      if(isAccountSelected == false){
+      buildAccountList('#dropdown-menu', accountList, signatureList);
+      $('#account-selection').toggle(true);
+      $('#signature-content').toggle(false);
+      }
+      
+      // code by philip
       $('#insert-signature').on('click', function(){
 
-        var radioID = getRadioID();
-        var selectedSignature = "<br> " + signatureList[radioID] + " <br>";
+        //var signature = getSelectedSignature();
+        var signature = signatureList[getRadioID()];
+        var selectedSignature = "<br> " + signature + " <br>";
         Office.context.mailbox.item.body.setSelectedDataAsync(selectedSignature, {coercionType: 'html'});
 
       });
       
+
       $('#random-signature').on('click', function(){
-            var randomNumber = Math.floor(Math.random() * (signatureList.length));
+        // code by sean and philip
+            var accountSigs = getAccountIndices(getAccount());
+            console.log(accountSigs);
+            var randomNumber = Math.floor(Math.random() * (accountSigs.length));
+            randomNumber = accountSigs[randomNumber];
             var randomSignature = "<br> " + signatureList[randomNumber] + " <br>";
             Office.context.mailbox.item.body.setSelectedDataAsync(randomSignature, {coercionType: 'html'});
       });
       
+      // code by philip
       $('#save-signature').on('click', function(){
 
         var newSig = $('#new-signature').val();
@@ -44,7 +60,7 @@
       //Written by Jose with the help of Weston
       $('#delete-signature').on('click', function(){
 
-
+/*
         var signID = - 1;
         var deleteSig;
         var radioButtons = document.getElementsByName('signature-radio');
@@ -57,17 +73,19 @@
           i++;
       }
 
-      // written by philip
-        $.ajax({
-          url: "https://localhost:3000/delete-signature?deleteSignature=" + signID,
-          type: "GET"
-        });
+*/
+      
+      $.ajax({
+        url: "https://localhost:3000/delete-signature?deleteSignature=" + getRadioID() /*signID*/,
+        type: "GET"
+      });
         
         buildSignatureList('#signatures-list', signatureList);
       });
     });
   };
 
+  // code by philip
   function storeSignatures(demsigs)
   {
     console.log(demsigs);
