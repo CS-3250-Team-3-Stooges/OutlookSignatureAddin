@@ -20,6 +20,22 @@ describe('Math', function() {
             expect(Math.abs(0)).to.be.equal(0);
         });
     });
+    
+//Code Adapted by Sean for Generic Math Tests - Taken from https://stackabuse.com/testing-node-js-code-with-mocha-and-chai/    
+    describe('#sqrt()', function() {
+        it('should return the square root of a given positive number', function() {
+            expect(Math.sqrt(25)).to.be.equal(5);
+        });
+
+        it('should return NaN for a given negative number', function() {
+            expect(Math.sqrt(-9)).to.be.NaN;
+        });
+
+        it('should return 0 given 0', function() {
+            expect(Math.sqrt(0)).to.be.equal(0);
+        });
+    });
+    
 //Code by Phillip - Reformatted by Sean - Expected multiplication test
 describe('#multiplyNumbers()', function () {
     it('should return the result of multiplication', function () {
