@@ -1,4 +1,3 @@
-import
 var chai = require('chai');
 var assert = chai.assert; // using Assert Style
 var expect = chai.expect; //Using Expect Style
