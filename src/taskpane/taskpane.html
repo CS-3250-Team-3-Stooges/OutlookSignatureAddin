@@ -60,7 +60,7 @@
       </button>
     </div>
     <div class="inner">
-      <button class="btn btn-info" id="delete-signature" tabindex=0 enabled>
+      <button class="btn btn-info" id="delete-signature" tabindex=0 disabled>
         <span class="ms-Button-label">Delete Signatures</span>
       </button>
     </div>
@@ -99,6 +99,7 @@
     function onSignatureSelected() {
     console.log("enabling");
     $('#insert-signature').removeAttr('disabled');
+    $('#delete-signature').removeAttr('disabled');
   }
   </script>
   </span>

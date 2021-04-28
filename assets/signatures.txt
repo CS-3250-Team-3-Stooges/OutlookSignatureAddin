@@ -6,5 +6,6 @@ Weston-"\"A goal is a dream with a deadline.\"<br> – Napoleon Hill",
 Weston-"\"Logic will get you from A to B. Imagination will take you everywhere.\"<br> –Albert Einstein",
 Weston-"\"Paying attention to simple little things that most men neglect makes a few men rich.\"<br> –Henry Ford",
 Philip-"\"Action is the foundational key to all success.\"<br> -Pablo Picasso",
-Philip-"\"No act of kindness, no matter how small, is ever wasted.\"<br> –Aesop",
 Sean-"\"The most important thing about a technology is how it changes people.\"<br> -Jaron Lanier",
+Philip-Hello this is testing
+Philip-hi sean
