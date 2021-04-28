@@ -86,5 +86,5 @@ module.exports = {
   getSignatures: getSignatures,
   getSelectedSignature, getSelectedSignature,
   buildSignatureList: buildSignatureList,
-  clearSignatureList: clearSignatureList
+  clearSignatureList: clearSignatureList,
 }

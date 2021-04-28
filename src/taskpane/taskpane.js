@@ -1,7 +1,8 @@
-var accountList = ["Philip", "Sean", "Weston"];
+var chai = require('chai')
+var assert = chai.assert;
 global.$ = global.jQuery = require('jquery');
 const assert = require('chai').assert;
-
+var accountList = ["Philip", "Sean", "Weston"];
 (function(){
   'use strict';
   var config;

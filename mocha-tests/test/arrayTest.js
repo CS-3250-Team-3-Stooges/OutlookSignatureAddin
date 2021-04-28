@@ -1,5 +1,6 @@
 var chai = require('chai');
 var assert = chai.assert;
+const signatureList = require('../../../src/taskpane/taskpane.js').signatureList;
 
 describe('Array', function() {
   it('should start empty', function() {
@@ -9,8 +10,8 @@ describe('Array', function() {
   });
   describe('Random signature', function () {
     it('should return a string', function () {
-      var Randomint = signatureList[1];
+      var arr = Accountlistsize();
 
-      assert.equal(Weston- "\"Dude, suckin' at something is the first step at being sorta good at something.\"<br>-  Jake <small><em>(Adventure Time)</em></small>",);
+      assert.equal(arr, 03);
     });
 });
