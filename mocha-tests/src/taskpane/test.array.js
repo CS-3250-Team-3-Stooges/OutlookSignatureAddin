@@ -1,5 +1,8 @@
+import
 var chai = require('chai');
-var assert = chai.assert;
+var assert = chai.assert; // using Assert Style
+var expect = chai.expect; //Using Expect Style
+var should = chai.should; // Using Should Style
 //Generic test that empty array should have length of 0
 describe('Array', function() {
   it('should start empty', function() {
