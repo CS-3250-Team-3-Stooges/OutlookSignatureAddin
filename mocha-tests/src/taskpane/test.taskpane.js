@@ -57,5 +57,5 @@ describe('Array test', function () {
       "\"If you always put limit on everything you do, physical or anything else. It will spread into your work and into your life. There are no limits. There are only plateaus, and you must not stay there, you must go beyond them.\"<br>- Bruce Lee",
     ]
     expect(signature).to.have.deep.members(sigListArry);
-  }
+  });
 });
