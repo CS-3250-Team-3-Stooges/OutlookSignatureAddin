@@ -5,15 +5,22 @@ const randomSignature = require('../../../src/commands/commands.js').randomSigna
 //const className = require('../../../src/commands/test.className.js');
 //var addClass = className.addClass;
 
-//Code by Phillip - Expected multiplication test
-describe('Commands', function () {
-    describe('#multiplyNumbers()', function () {
-        it('should return the result of multiplication', function () {
-            let result = multiplyNumbers(4, 6);
+//Code Adapted by Sean for Generic Math Tests - Taken from https://stackabuse.com/testing-node-js-code-with-mocha-and-chai/
+describe('Math', function() {
+    describe('#abs()', function() {
+        it('should return positive value of given negative number', function() {
+            expect(Math.abs(-5)).to.be.equal(5);
+         });
+      });
+//Code by Phillip - Reformatted by Sean - Expected multiplication test
+describe('#multiplyNumbers()', function () {
+    it('should return the result of multiplication', function () {
+        let result = multiplyNumbers(4, 6);
             expect(result).to.equal(24);
         });
     });
 });
+
 
 //Added by Sean - Code taken from https://www.sitepoint.com/unit-test-javascript-mocha-chai/
 function addClass(el, newClass) {
