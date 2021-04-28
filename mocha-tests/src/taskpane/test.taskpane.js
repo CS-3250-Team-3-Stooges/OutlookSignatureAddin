@@ -1,12 +1,13 @@
-global.$ = global.jQuery = require('jquery');
-const assert = require('chai').assert;
+var chai = require('chai');
+var assert = chai.assert; // using Assert Style
+var expect = chai.expect; //Using Expect Style
+var should = chai.should; // Using Should Style
 
-/*describe('Taskpane', function () {
-    describe('#randomSignature()', function () {
-        it('should return a string that is a signature', function () {
-            let result = randomSignature();
-            assert.typeOf('chai', 'string');
-            console.log(randomSignature());
-        });
-    });
-});*/
+//Generic test that empty array should have length of 0
+describe('ArrayLength', function() {
+  it('should contain 3 members', function() {
+    var accountList = ["Philip", "Sean", "Weston"];
+
+    assert.equal(accountList.length, 3);
+  });
+});
