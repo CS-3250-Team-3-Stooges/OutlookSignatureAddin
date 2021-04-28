@@ -4,6 +4,7 @@ const assert = require('chai').assert;
 const multiplyNumbers = require('../../../src/commands/commands.js').multiplyNumbers;
 const randomSignature = require('../../../src/commands/commands.js').randomSignature;
 
+//Code by Phiilip - Expected multiplication test
 describe('Commands', function () {
     describe('#multiplyNumbers()', function () {
         it('should return the result of multiplication', function () {
