@@ -5,7 +5,7 @@ const randomSignature = require('../../../src/commands/commands.js').randomSigna
 //const className = require('../../../src/commands/test.className.js');
 //var addClass = className.addClass;
 
-//Code by Phiilip - Expected multiplication test
+//Code by Phillip - Expected multiplication test
 describe('Commands', function () {
     describe('#multiplyNumbers()', function () {
         it('should return the result of multiplication', function () {
@@ -16,36 +16,6 @@ describe('Commands', function () {
 });
 
 //Added by Sean - Code taken from https://www.sitepoint.com/unit-test-javascript-mocha-chai/
-describe('addClass', function() {
-  it('should add class to element', function() {
-    var element = { className: '' };
-
-    addClass(element, 'test-class');
-
-    assert.equal(element.className, 'test-class');
-  });
-
-  it('should not add a class which already exists');
-});
-
-it('should not add a class which already exists', function() {
-  var element = { className: 'exists' };
-
-  addClass(element, 'exists');
-
-  var numClasses = element.className.split(' ').length;
-  assert.equal(numClasses, 1);
-});
-
-it('should append new class after existing one', function() {
-  var element = { className: 'exists' };
-
-  addClass(element, 'new-class');
-
-  var classes = element.className.split(' ');
-  assert.equal(classes[1], 'new-class');
-});
-
 function addClass(el, newClass) {
   if(el.className.indexOf(newClass) !== -1) {
     return;
@@ -58,3 +28,34 @@ function addClass(el, newClass) {
 
   el.className += newClass;
 }
+
+//Added by Sean - Code taken from https://www.sitepoint.com/unit-test-javascript-mocha-chai/
+describe('addClass', function() {
+  it('should add class into element', function() {
+    var element = { className: '' };
+
+    addClass(element, 'test-class');
+
+    assert.equal(element.className, 'test-class');
+  });  
+  
+  it('should not add a class which already exists in element', function() {
+    var element = { className: 'exists' };
+
+    addClass(element, 'exists');
+
+    var numClasses = element.className.split(' ').length;
+    assert.equal(numClasses, 1);
+  });
+  
+  it('should append new class after existing one', function() {
+    var element = { className: 'exists' };
+
+    addClass(element, 'new-class');
+
+    var classes = element.className.split(' ');
+    assert.equal(classes[1], 'new-class');
+  });
+});
+
+
