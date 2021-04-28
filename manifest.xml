@@ -96,14 +96,14 @@
   </bt:Urls>
   <bt:ShortStrings>
     <bt:String id="GroupLabel" DefaultValue="Git the gist"/>
-    <bt:String id="TaskpaneButton.Label" DefaultValue="Insert gist"/>
-    <bt:String id="TaskpaneButton.Title" DefaultValue="Insert gist"/>
-    <bt:String id="FunctionButton.Label" DefaultValue="Insert default gist"/>
-    <bt:String id="FunctionButton.Title" DefaultValue="Insert default gist"/>
+    <bt:String id="TaskpaneButton.Label" DefaultValue="Signature Selection"/>
+    <bt:String id="TaskpaneButton.Title" DefaultValue="Signature Selection"/>
+    <bt:String id="FunctionButton.Label" DefaultValue="Insert Random Signature"/>
+    <bt:String id="FunctionButton.Title" DefaultValue="Insert Random Signature"/>
   </bt:ShortStrings>
   <bt:LongStrings>
-    <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Displays a list of your gists and allows you to insert their contents into the current message."/>
-    <bt:String id="FunctionButton.Tooltip" DefaultValue="Inserts the content of the gist you mark as default into the current message."/>
+    <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Displays a list of your signatures and allows your to randomly select a signature, add a new signature, delete a signature, and select specific signatures"/>
+    <bt:String id="FunctionButton.Tooltip" DefaultValue="Inserts a random signature from the save list of signatures."/>
   </bt:LongStrings>
 </Resources>
   </VersionOverrides>
