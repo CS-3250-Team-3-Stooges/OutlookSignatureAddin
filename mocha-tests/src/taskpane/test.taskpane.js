@@ -61,7 +61,7 @@ describe('Array', function() {
   });
 
   //Code by Sean and Weston - Generic test that created array has the correct number of members
-  it('should contain 3 members', function() {
+  it('should contain the correct number of members', function() {
     var accountList = ["Philip", "Sean", "Weston"];
 
     assert.equal(accountList.length, 3);
