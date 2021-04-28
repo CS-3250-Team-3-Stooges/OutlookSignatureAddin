@@ -51,7 +51,7 @@ var accountList = ["Philip", "Sean", "Weston"];
         var newSig = $('#new-signature').val();
 
         $.ajax({
-          url: "https://localhost:3000/set-signature?newSignature=" + newSig,
+          url: "https://localhost:3000/set-signature?newSignature=" + getAccount() + "-" + newSig,
           type: "GET"
         })
         //Build signature list functionality
