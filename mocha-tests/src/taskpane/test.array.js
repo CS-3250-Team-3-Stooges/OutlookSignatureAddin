@@ -19,8 +19,8 @@ var a = [
 
 //assume we got the result in this order
 var b = [
-    {name: 'Sean', age: 30},
-    {name: 'Weston', age: 35},
+    {name: 'Sean', age: 35},
+    {name: 'Weston', age: 30},
 ]
 
 expect(a).to.have.deep.members(b)
