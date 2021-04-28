@@ -6,8 +6,8 @@ var assert = chai.assert; // using Assert Style
 var expect = chai.expect; //Using Expect Style
 var should = chai.should; // Using Should Style
 
-
-describe('apply Signature test', () => {
+//Skeleton Example from Team Two's Repo for inspiration for future tests
+/*describe('apply Signature test', () => {
     it('title should not be null',()=>{
     const title = window.document.getElementById('signature');
     expect(title).toBeDefined();
@@ -34,7 +34,8 @@ describe('Apply Random Signature from the list', () => {
         expect(result.length).toBeGreaterThanOrEqual*(0) ;
 
     });
-});
+});*/
+
 //Code by Sean - Generic test that empty array should have length of 0
 describe('Array', function() {
   it('should start empty', function() {
