@@ -56,6 +56,6 @@ describe('Array test', function () {
       "\"Never give up, for that is just the place and time that the tide will turn.\"<br>- Harriet Beecher Stowe",
       "\"If you always put limit on everything you do, physical or anything else. It will spread into your work and into your life. There are no limits. There are only plateaus, and you must not stay there, you must go beyond them.\"<br>- Bruce Lee",
     ]
-    expect(signature).to.have.deep.members(sigListArry)
+    expect(signature).to.have.deep.members(sigListArry);
   }
 });
