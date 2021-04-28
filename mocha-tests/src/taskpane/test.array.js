@@ -4,16 +4,14 @@ var expect = chai.expect; //Using Expect Style
 var should = chai.should; // Using Should Style
 
 //Code by Sean - Generic test that empty array should have length of 0
-describe('ArrayEmpty', function() {
+describe('Array', function() {
   it('should start empty', function() {
     var arr = [];
 
     assert.equal(arr.length, 0);
   });
-});
 
-//Code adapted by Sean - Generic Test that compares arrays have same members - Taken from https://stackoverflow.com/questions/44335770/node-mocha-chai-unit-tests-compare-array-of-objects-regardless-of-order
-describe('ArrayComparison', function() {
+  //Code adapted by Sean - Generic Test that compares arrays have same members - Taken from https://stackoverflow.com/questions/44335770/node-mocha-chai-unit-tests-compare-array-of-objects-regardless-of-order
   it('should have the same members', function() {
    var a = [
    {name: 'Sean', age: 35},
@@ -27,6 +25,5 @@ describe('ArrayComparison', function() {
    ]
 
    expect(a).to.have.deep.members(b)
-
   });
 });
