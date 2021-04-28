@@ -58,7 +58,6 @@ describe('Array', function() {
 
    expect(a).to.have.deep.members(b)
   });
-});
 
   //Code by Sean and Weston - Generic test that created array has the correct number of members
   it('should contain 3 members', function() {
