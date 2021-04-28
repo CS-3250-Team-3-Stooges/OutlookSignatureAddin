@@ -1,6 +1,6 @@
 var chai = require('chai');
 var assert = chai.assert;
-const signatureList = require('../../../src/taskpane/taskpane.js').signatureList;
+import Accountlistsize from '../../../src/taskpane/taskpane.js';
 
 describe('Array', function() {
   it('should start empty', function() {
