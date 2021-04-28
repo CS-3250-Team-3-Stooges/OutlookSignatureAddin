@@ -38,7 +38,7 @@ describe('Array test', function () {
   });
   //code by weston to test if array equals signature.txt file
   it('should match the lenght of the signature list', function () {
-    var sigListArry = fs.readFileSync('signatures.txt').toString().split("\n");
+    var sigListArry = fs.readFileSync('../src/taskpane/signatures.txt').toString().split("\n");
     var signature = ["\"Dude, suckin' at something is the first step at being sorta good at something.\"<br>-  Jake <small><em>(Adventure Time)</em></small>",
       "\"We can only see a short distance ahead, but we can see plenty that needs to be done.\"<br> -Alan Turing",
       "\"No computer is ever going to ask a new, reasonable question. It takes trained people to do that.\"<br> -Grace Hopper",
