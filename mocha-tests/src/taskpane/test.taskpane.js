@@ -1,12 +1,11 @@
 global.$ = global.jQuery = require('jquery');
-const assert = require('chai').assert;
+var chai = require('chai');
+var assert = chai.assert;    // Using Assert style
+var expect = chai.expect;    // Using Expect style
+var should = chai.should();  // Using Should style
+describe('Random signature', function () {
+  it('should return a string', function () {
+    var arr = Accountlistsize();
 
-/*describe('Taskpane', function () {
-    describe('#randomSignature()', function () {
-        it('should return a string that is a signature', function () {
-            let result = randomSignature();
-            assert.typeOf('chai', 'string');
-            console.log(randomSignature());
-        });
-    });
-});*/
+    assert.equal(arr, 3);
+  });
