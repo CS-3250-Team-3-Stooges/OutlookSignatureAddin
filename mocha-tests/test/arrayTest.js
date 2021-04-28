@@ -7,4 +7,10 @@ describe('Array', function() {
 
     assert.equal(arr.length, 0);
   });
+  describe('Random signature', function () {
+    it('should return a string', function () {
+      var Randomint = signatureList[1];
+
+      assert.equal(Weston- "\"Dude, suckin' at something is the first step at being sorta good at something.\"<br>-  Jake <small><em>(Adventure Time)</em></small>",);
+    });
 });
