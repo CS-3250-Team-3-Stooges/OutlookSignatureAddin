@@ -23,21 +23,32 @@
 </head>
 
 <body class="ms-font-l ms-landing-page landing-page-background">
-  <main class="ms-landing-page__main">
-    <section class="ms-landing-page__content ms-font-m ms-fontColor-neutralPrimary">
-      <div id="not-configured" style="display: none;">
-        <div class="centered ms-font-xxl ms-u-textAlignCenter">Hello!</div>
-        <div class="ms-font-xl" id="settings-prompt">Please choose the <strong>Settings</strong> icon at the bottom of this window to configure this add-in.</div>
+  <span id="account-selection">
+    <span>Please select an account before continuing to the signature selection</span>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Select an Account
+      </button>
+      <div id="dropdown-menu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
       </div>
-      <div id="signatures-list">
-        <ul>
-        </ul>
-      </div>
-      <div id="error-display" style="display: none;" class="ms-u-borderBase ms-fontColor-error ms-font-m ms-bgColor-error ms-borderColor-error">
-      </div>
-    </section>
-  </main>
-  <div id="outer">
+    </div>
+  </span>
+  <span id="signature-content">
+    <main class="ms-landing-page__main">
+      <section class="ms-landing-page__content ms-font-m ms-fontColor-neutralPrimary">
+        <div id="not-configured" style="display: none;">
+          <div class="centered ms-font-xxl ms-u-textAlignCenter">Hello!</div>
+          <div class="ms-font-xl" id="settings-prompt">Please choose the <strong>Settings</strong> icon at the bottom of this window to configure this add-in.</div>
+        </div>
+        <span id="signatures-list">
+          <ul>
+          </ul>
+        </div>
+        <div id="error-display" style="display: none;" class="ms-u-borderBase ms-fontColor-error ms-font-m ms-bgColor-error ms-borderColor-error">
+        </div>
+      </section>
+    </main>
+  <div id="footer">
     <div class="inner">
     <button class="btn btn-primary" id="insert-signature" tabindex=0 disabled>
       <span class="ms-Button-label">Insert Signature</span>
@@ -48,8 +59,19 @@
         <span class="ms-Button-label">Random Signature</span>
       </button>
     </div>
+    <div class="inner">
+      <button class="btn btn-info" id="delete-signature" tabindex=0 disabled>
+        <span class="ms-Button-label">Delete Signatures</span>
+      </button>
+    </div>
+    <div class="inner">
+      <button class="btn btn-info" id="save-signature" tabindex=0 enabled>
+        <span class="ms-Button-label">Save Signature</span>
+      </button>
+    </div>
+    <input class="ms-TextField-field" id="new-signature" type="text" value="" placeholder="Please enter a signature">
   </div>
-  <div id="outer">
+  <div id="outer" hidden>
     <div class="inner">
       <button class="btn btn-info" id="delete-signature" tabindex=0 enabled>
         <span class="ms-Button-label">Delete Signatures</span>
@@ -69,6 +91,7 @@
   <script type="text/javascript" src="../src/helpers/addin-config.js"></script>
   <script type="text/javascript" src="../src/helpers/gist-api.js"></script>
   <script type="text/javascript" src="../src/helpers/signature-api.js"></script>
+  <script type="text/javascript" src="../src/helpers/account-helper.js"></script>
   <script type="text/javascript" src="taskpane.js"></script> 
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -76,8 +99,10 @@
     function onSignatureSelected() {
     console.log("enabling");
     $('#insert-signature').removeAttr('disabled');
+    $('#delete-signature').removeAttr('disabled');
   }
   </script>
+  </span>
 </body>
 
 </html>
