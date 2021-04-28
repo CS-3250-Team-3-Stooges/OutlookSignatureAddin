@@ -37,6 +37,15 @@ it('should not add a class which already exists', function() {
   assert.equal(numClasses, 1);
 });
 
+it('should append new class after existing one', function() {
+  var element = { className: 'exists' };
+
+  addClass(element, 'new-class');
+
+  var classes = element.className.split(' ');
+  assert.equal(classes[1], 'new-class');
+});
+
 function addClass(el, newClass) {
   if(el.className.indexOf(newClass) !== -1) {
     return;
