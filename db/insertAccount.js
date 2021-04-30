@@ -1,5 +1,10 @@
 (function() {
 
+  // Insert query
+  const INSERT_ACCOUNT = `insert into Accounts
+    values (?, ?, ?,
+      ?, ?, ?);`
+  
   // Open new connection
   const sqlite3 = require('sqlite3').verbose();
   const DB_FILE = 'AccountsDB.sqlite3';
@@ -10,16 +15,24 @@
     console.log('Successfully connected to the Accounts database.');
   });
 
-  // SQL queries
-  const INSERT_ACCOUNT = `insert into Accounts
-    values (?, ?, ?,
-      ?, ?, ?);`
+  // Prepare SQL statement to insert new account(s)
+  insertStmt = db.prepare(
+    INSERT_ACCOUNT, [], (err) => {
+      if (err) {
+        throw err;
+      }
+      console.log('Successfully inserted an account.');
+      });
   
-    // Prepare SQL statement to insert new account(s)
-    insertStmt = db.prepare(
-      INSERT_ACCOUNT, 
-    );
-  
-  }
-  
+  // Execute statement
+  insertStmt.run();
+
+  // Close the connection
+  db.close((err) => {
+    if (err) {
+      throw err;
+    }
+    console.log('Successfully closed the connection and saved all changes.')
+  });
+
 }());
