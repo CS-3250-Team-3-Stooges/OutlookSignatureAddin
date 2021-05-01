@@ -37,6 +37,7 @@ class AccountsDB {
   /**
    * openDB opens a new connection to the Accounts database.
    * It will create a new Accounts database if one doesn't exist.
+   * @returns {sqlite3.Database} - An instance of the database with an open connection
    */
   openDB = () => {
     let output = 'Successfully connected to the Accounts database.';
@@ -46,7 +47,6 @@ class AccountsDB {
       if (err) {
         throw err;
       }
-      console.log(output);
     });
     return db;
     
@@ -55,12 +55,11 @@ class AccountsDB {
 
   /**
    * createTable creates the Accounts table, if it doesn't already exist.
+   * @returns {Array} - An array of total Accounts tables created; for testing the table creation
    */
   createTable = () => {
-    let tablesCreated = [];
-    let accountsCreated = [];
     let db = this.openDB();
-    let output = 'The Accounts table has been created.';
+    let tables = [];
 
     /* Create the account table with 6 columns:
      * ID, Name, Email, Signatures, Selected, and Remove.
@@ -69,11 +68,10 @@ class AccountsDB {
     if (err) {
       throw err;
     }
-    console.log(output);
   });
 
-  // Check that the Accounts table has been created
-  tablesCreated.push(db.run(TABLE_EXISTS));
+  // Check that the Accounts table has been created, and push it to the tables array
+  tables.push(db.run(TABLE_EXISTS));
     
   // Close the database connection
   db.close((err) => {
@@ -81,7 +79,7 @@ class AccountsDB {
       throw err;
     }
   });
-  return tablesCreated;
+  return tables;
 
   } // End createTable
 
