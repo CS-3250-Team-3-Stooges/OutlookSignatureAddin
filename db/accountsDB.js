@@ -94,11 +94,12 @@ class AccountsDB {
 
     // Retrieve account information and insert it into the table.
     db.run(
-      ADD_ACCOUNT, [], (err) => {
+      ADD_ACCOUNT,
+      [],  // FIXME: retrieve account details from user
+      (err) => {
         if (err) {
           throw err;
         }
-        console.log('Successfully added an account.');
       }
     );
 
@@ -107,7 +108,6 @@ class AccountsDB {
     if (err) {
       throw err;
     }
-    console.log('Successfully close the connection and saved all changes.');
   });
 
 } // End addAccount
@@ -126,7 +126,6 @@ class AccountsDB {
       if (err) {
         throw err;
       }
-      console.log('Successfully removed an account.');
     });
 
   // Close the database connection
@@ -134,7 +133,6 @@ class AccountsDB {
     if (err) {
       throw err;
     }
-    console.log('Successfully close the connection and saved all changes.');
   });
 
   } // End removeAccount
