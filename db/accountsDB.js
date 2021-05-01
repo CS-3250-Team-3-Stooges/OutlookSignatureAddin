@@ -1,10 +1,7 @@
 /**
- * Creates a new database in Accounts.sqlite3 if it doesn't already exist,
- * and opens a new connection to the database.
+ * Creates a new database in Accounts.sqlite3 if it doesn't already exist.
  * The AccountsDB object comes with basic functionality,
- * including creating an Accounts table,
- * adding and removing accounts,
- * and switching accounts.
+ * including opening a connection to the database, creating an Accounts table, and adding/removing accounts.
  * 
  * @author Jacob Torres <jacob@jacobtorres.net>
  */
@@ -34,9 +31,8 @@ const REMOVE_ACCOUNT = 'delete from Accounts where Remove == 1;'
 class AccountsDB {
 
   /**
-   * openDB creates a new database in Accounts.sqlite3
-   * (if it doesn't already exist)
-   * and opens a new connection to the database.
+   * openDB opens a new connection to the Accounts database.
+   * It will create a new Accounts database if one doesn't exist.
    */
   openDB = () => {
 
@@ -53,7 +49,7 @@ class AccountsDB {
 
 
   /**
-   * createTable creates the Accounts tables, if it doesn't already exist.
+   * createTable creates the Accounts table, if it doesn't already exist.
    */
   createTable = () => {
 
