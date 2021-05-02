@@ -10,14 +10,17 @@
 const sqlite3 = require('sqlite3').verbose();
 const DB_FILE = 'Accounts.sqlite3';
 
-// Table query
+  // Query to get all Accounts in the table
+  const GET_ACCOUNTS = 'select * from Accounts;'
+
+  // Table query
 const CREATE_TABLE = `create table if not exists Accounts
-  (ID integer primary key autoincrement,
-    Name text,
-    Email text,
-    Signatures text,
-    Selected integer,
-    Remove integer);`
+  (id integer primary key autoincrement,
+    name text,
+    email text,
+    signatures text,
+    selected integer,
+    remove integer);`
 
 // Query to check the existence of the Accounts table
 const TABLE_EXISTS = `select name from sqlite_master
@@ -25,8 +28,11 @@ const TABLE_EXISTS = `select name from sqlite_master
 
 // Add account query
 const ADD_ACCOUNT = `insert into Accounts
-values (?, ?, ?,
-  ?, ?, ?);`
+values (?, ?, ?, ?, ?, ?);`
+
+// Query to get the account last added
+const GET_LAST_ACCOUNT = `select * from Accounts
+  order by id desc limit 1;`
 
 // Remove account query
 const REMOVE_ACCOUNT = 'delete from Accounts where Remove == 1;'
@@ -40,13 +46,10 @@ class AccountsDB {
    * @returns {sqlite3.Database} - An instance of the database with an open connection
    */
   openDB = () => {
-    let output = 'Successfully connected to the Accounts database.';
 
     // Open new connection
     let db = new sqlite3.Database(DB_FILE, (err) => {
-      if (err) {
-        throw err;
-      }
+      if (err) { throw err; }
     });
     return db;
     
@@ -55,7 +58,7 @@ class AccountsDB {
 
   /**
    * createTable creates the Accounts table, if it doesn't already exist.
-   * @returns {Array} - An array of total Accounts tables created; for testing the table creation
+   * @returns {Array} - An array of total tables created for testing the Accounts table creation
    */
   createTable = () => {
     let db = this.openDB();
@@ -64,53 +67,51 @@ class AccountsDB {
     /* Create the account table with 6 columns:
      * ID, Name, Email, Signatures, Selected, and Remove.
      */
-  db.run(CREATE_TABLE, (err) => {
-    if (err) {
-      throw err;
-    }
-  });
+    db.run(CREATE_TABLE, (err) => {
+      if (err) { throw err; }
+    });
 
-  // Check that the Accounts table has been created, and push it to the tables array
-  tables.push(db.run(TABLE_EXISTS));
+    // Check that the Accounts table has been created, and push it to the tables array
+    tables.push(db.run(TABLE_EXISTS));
     
-  // Close the database connection
-  db.close((err) => {
-    if (err) {
-      throw err;
-    }
-  });
-  return tables;
+    // Close the database connection
+    db.close((err) => {
+      if (err) { throw err; }
+    });
+    return tables;
 
   } // End createTable
 
 
   /**
    * addAccount inserts a new account record into the table.
+   * @param {Array} acctAttrs - Account attributes input from user
    */
-  addAccount = () => {
-
-    // Open database
+  addAccount = (acctAttrs) => {
     let db = this.openDB();
+    let output = '';  // For printing the new account attributes
 
     // Retrieve account information and insert it into the table.
     db.run(
       ADD_ACCOUNT,
-      [],  // FIXME: retrieve account details from user
+      acctAttrs,  // FIXME: retrieve account attributes from user
       (err) => {
-        if (err) {
-          throw err;
+        if (err) { throw err; }
+        else { output = output + db.run(
+          GET_LAST_ACCOUNT, (err) => {
+            if (err) { throw err; }
+            else { output = output.split('|'); }  // Split the output string into an array
+          });
         }
-      }
-    );
+      });  
 
-  // Close the database connection
-  db.close((err) => {
-    if (err) {
-      throw err;
-    }
-  });
+    // Close the database connection
+    db.close((err) => {
+      if (err) { throw err; }
+    });
+    return output;
 
-} // End addAccount
+  } // End addAccount
 
 
   /**
@@ -123,16 +124,12 @@ class AccountsDB {
 
     // Remove the account whose Remove value is 1 (True)
     db.run(REMOVE_ACCOUNT, (err) => {
-      if (err) {
-        throw err;
-      }
+      if (err) { throw err; }
     });
 
   // Close the database connection
   db.close((err) => {
-    if (err) {
-      throw err;
-    }
+    if (err) { throw err; }
   });
 
   } // End removeAccount
