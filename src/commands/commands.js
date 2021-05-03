@@ -10,8 +10,8 @@ var btnEvent;
 //  var raw Files = FileReader;
 //}
 
-//var LinkedList = newFunction()
-// The initialize function must be run each time a new page is loaded.
+/** var LinkedList = newFunction()
+    The initialize function must be run each time a new page is loaded. */
 Office.initialize = function (reason) {   
 };
 
@@ -57,7 +57,7 @@ Office.initialize = function (reason) {
 // addEventHandler method
 //object.addEventHandler("click", random());
 
-// Add any UI-less function here.
+/** Add any UI-less function here. */
 function showError(error) {
   Office.context.mailbox.item.notificationMessages.replaceAsync('github-error', {
     type: 'errorMessage',
@@ -72,9 +72,9 @@ function insertDefaultGist(event) {
 
   config = getConfig();
 
-  // Check if the add-in has been configured.
+  /** Check if the add-in has been configured. */
   if (config && config.defaultGistId) {
-    // Get the default gist content and insert.
+    /** Get the default gist content and insert. */
     try {
       getGist(config.defaultGistId, function(gist, error) {
         if (gist) {
@@ -101,10 +101,10 @@ function insertDefaultGist(event) {
     }
 
   } else {
-    // Save the event object so we can finish up later.
+    /** Save the event object so we can finish up later. */
     btnEvent = event;
-    // Not configured yet, display settings dialog with
-    // warn=1 to display warning.
+    /** Not configured yet, display settings dialog with
+        warn=1 to display warning. */
     var url = new URI('../src/settings/dialog.html?warn=1').absoluteTo(window.location).toString();
     var dialogOptions = { width: 20, height: 40, displayInIframe: true };
 
@@ -141,7 +141,7 @@ function getGlobal() {
 
 var g = getGlobal();
 
-// The add-in command functions need to be available in global scope.
+/** The add-in command functions need to be available in global scope. */
 g.insertDefaultGist = insertDefaultGist;
 
 
@@ -149,19 +149,21 @@ g.insertDefaultGist = insertDefaultGist;
 function multiplyNumbers(x, y) {
   return x * y;
 }
-/*
-// Code by Sean
+
+/**
+Deprecated - Code by Sean
 var sig = fs.readFileSync("assets/signatures.txt").toString().split("\n");
 for (i in sig) {
   console.log(sig[i])
 }
-// Code by Sean
+Deprecated - Code by Sean
 function randomSignature() {
   var sig = fs.readFileSync('assets/signatures.txt').toString().split("\n");
   var randomNumber = Math.floor(Math.random() * (sig.length));
   return sig[randomNumber];
 }
 */
+
 module.exports = {
   multiplyNumbers : multiplyNumbers
   //randomSignature: randomSignature
