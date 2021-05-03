@@ -5,7 +5,7 @@ var accountList = ["Philip", "Sean", "Weston"];
   var config;
   var signatureList;
 
-  // Code by Philip
+  /** Code by Philip */
   Office.onReady($.when(getSignatures("signature")).then(storeSignatures));
 
 
@@ -15,17 +15,17 @@ var accountList = ["Philip", "Sean", "Weston"];
 
       config = getConfig();
 
-      // Code by Phillip - Functionality for account selection via dropdown menu within taskpane
+      /** Code by Phillip - Functionality for account selection via dropdown menu within taskpane */
       if(isAccountSelected == false){
       buildAccountList('#dropdown-menu', accountList, signatureList);
       $('#account-selection').toggle(true);
       $('#signature-content').toggle(false);
       }
 
-      // Code by Philip - Insert Signature button functionality for taskpane
+      /** Code by Philip - Insert Signature button functionality for taskpane */
       $('#insert-signature').on('click', function(){
 
-        //var signature = getSelectedSignature();
+        /** Deprecated - var signature = getSelectedSignature(); */
         var signature = signatureList[getRadioID()];
         var selectedSignature = "<br> " + signature + " <br>";
         Office.context.mailbox.item.body.setSelectedDataAsync(selectedSignature, {coercionType: 'html'});
@@ -34,35 +34,35 @@ var accountList = ["Philip", "Sean", "Weston"];
 
 
       $('#random-signature').on('click', function(){
-        // Code by Sean and Philip
+        /** Code by Sean and Philip */
             var accountSigs = getAccountIndices(getAccount());
             console.log(accountSigs);
-            //code by Sean - floor method to round to integer for random function to grab index of list or array
+            /** Code by Sean - floor method to round to integer for random function to grab index of list or array */
             var randomNumber = Math.floor(Math.random() * (accountSigs.length));
             randomNumber = accountSigs[randomNumber];
-            //code by Phillip to grab the break point tags from HTML formatting
+            /** Code by Phillip to grab the break point tags from HTML formatting */
             var randomSignature = "<br> " + signatureList[randomNumber] + " <br>";
             Office.context.mailbox.item.body.setSelectedDataAsync(randomSignature, {coercionType: 'html'});
       });
 
-      // Code by Philip - Save signature button functionality
+      /** Code by Philip - Save signature button functionality */
       $('#save-signature').on('click', function(){
-        //variable for new signature
+        /** variable for new signature */
         var newSig = $('#new-signature').val();
 
         $.ajax({
           url: "https://localhost:3000/set-signature?newSignature=" + getAccount() + "-" + newSig,
           type: "GET"
         })
-        //Build signature list functionality
+        /** Build signature list functionality */
         buildSignatureList('#signatures-list', signatureList);
       })
 
 
-      //Written by Jose with the help of Weston - Delete signature from list functionality
+      /** Written by Jose with the help of Weston - Delete signature from list functionality */
       $('#delete-signature').on('click', function(){
 
-/* - Deprecated code -
+/** - Deprecated code -
         var signID = - 1;
         var deleteSig;
         var radioButtons = document.getElementsByName('signature-radio');
@@ -81,13 +81,13 @@ var accountList = ["Philip", "Sean", "Weston"];
         url: "https://localhost:3000/delete-signature?deleteSignature=" + getRadioID() /*signID*/,
         type: "GET"
       });
-        //Build signature list functionality
+        /** Build signature list functionality */
         buildSignatureList('#signatures-list', signatureList);
       });
     });
   };
 
-  // Code by Philip - Functionality to store signature and split by the newline character
+  /** Code by Philip - Functionality to store signature and split by the newline character */
   function storeSignatures(demsigs)
   {
     console.log(demsigs);
