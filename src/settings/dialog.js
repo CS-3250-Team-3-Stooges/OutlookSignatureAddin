@@ -3,17 +3,17 @@ global.Office = () => ({});
 (function(){
     'use strict';
   
-    // The Office initialize function must be run each time a new page is loaded.
+    /** The Office initialize function must be run each time a new page is loaded. */
     Office.initialize = function(reason){
       jQuery(document).ready(function(){
         if (window.location.search) {
-          // Check if warning should be displayed.
+          /** Check if warning should be displayed. */
           var warn = getParameterByName('warn');
           if (warn) {
             $('.not-configured-warning').show();
           } else {
-            // See if the config values were passed.
-            // If so, pre-populate the values.
+            /** See if the config values were passed. */
+            /** If so, pre-populate the values. */
             var user = getParameterByName('gitHubUserName');
             var gistId = getParameterByName('defaultGistId');
   
@@ -30,8 +30,8 @@ global.Office = () => ({});
           }
         }
   
-        // When the GitHub username changes,
-        // try to load gists.
+        /** When the GitHub username changes, */
+        /** try to load gists. */
         $('#github-user').on('change', function(){
           $('#gist-list').empty();
           var ghUser = $('#github-user').val();
@@ -40,9 +40,9 @@ global.Office = () => ({});
           }
         });
   
-        // When the Done button is selected, send the
-        // values back to the caller as a serialized
-        // object.
+        /** When the Done button is selected, send the 
+            values back to the caller as a serialized
+            object. */
         $('#settings-done').on('click', function() {
           var settings = {};
   
@@ -58,8 +58,8 @@ global.Office = () => ({});
       });
     };
   
-    // Load gists for the user using the GitHub API
-    // and build the list.
+    /**Load gists for the user using the GitHub API
+       and build the list. */
     function loadGists(user, callback) {
       getUserGists(user, function(gists, error){
         if (error) {
