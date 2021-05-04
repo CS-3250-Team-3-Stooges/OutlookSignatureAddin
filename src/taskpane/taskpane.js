@@ -1,4 +1,7 @@
-var accountList = ["Philip", "Sean", "Weston"];
+// Next three lines will be populated by the database once it is finalized
+var accountList = ["Philip", "Sean", "Weston"]; 
+var signedIn = true;
+var loggedInAccount = "Weston";
 
 (function(){
   'use strict';
@@ -15,11 +18,17 @@ var accountList = ["Philip", "Sean", "Weston"];
 
       config = getConfig();
 
-      /** Code by Phillip - Functionality for account selection via dropdown menu within taskpane */
-      if(isAccountSelected == false){
+      /** Code by Philip - Functionality for account selection via dropdown menu within taskpane */
+      if(signedIn == false){
       buildAccountList('#dropdown-menu', accountList, signatureList);
       $('#account-selection').toggle(true);
       $('#signature-content').toggle(false);
+      }
+      else
+      {
+        accountSelected = loggedInAccount;
+        buildAccountList('#dropdown-menu', accountList, signatureList);
+        updateAccountSelectionStatus();
       }
 
       /** Code by Philip - Insert Signature button functionality for taskpane */
@@ -32,6 +41,24 @@ var accountList = ["Philip", "Sean", "Weston"];
 
       });
 
+      /** Code by Philip - Log out button for the taskpane */
+      $('#log-out').on('click', function(){
+        var divs = document.getElementsByName('signatures-divs');
+        var radios = document.getElementsByName('signature-radio');
+        var labels = document.getElementsByName('signature-labels');
+        divs.forEach(radioButton => {
+          radioButton.remove();
+        });
+        radios.forEach(radioButton => {
+          radioButton.remove();
+        });
+        labels.forEach(radioButton => {
+          radioButton.remove();
+        });
+        $('#account-selection').toggle(true);
+        $('#signature-content').toggle(false);
+      });
+
 
       $('#random-signature').on('click', function(){
         /** Code by Sean and Philip */
@@ -40,7 +67,7 @@ var accountList = ["Philip", "Sean", "Weston"];
             /** Code by Sean - floor method to round to integer for random function to grab index of list or array */
             var randomNumber = Math.floor(Math.random() * (accountSigs.length));
             randomNumber = accountSigs[randomNumber];
-            /** Code by Phillip to grab the break point tags from HTML formatting */
+            /** Code by Philip to grab the break point tags from HTML formatting */
             var randomSignature = "<br> " + signatureList[randomNumber] + " <br>";
             Office.context.mailbox.item.body.setSelectedDataAsync(randomSignature, {coercionType: 'html'});
       });
@@ -88,9 +115,8 @@ var accountList = ["Philip", "Sean", "Weston"];
   };
 
   /** Code by Philip - Functionality to store signature and split by the newline character */
-  function storeSignatures(demsigs)
+  function storeSignatures(signatures)
   {
-    console.log(demsigs);
-    signatureList = demsigs.split("\n");
+    signatureList = signatures.split("\n");
   }
 })();
