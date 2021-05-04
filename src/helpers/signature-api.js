@@ -63,14 +63,14 @@ function buildSignatureList(parent, sigList, account) {
     //next line by Weston
     if(sig.substr(0,key.length) == key)
     {
-      var SigList = $('<div/>').appendTo(parent);
+      var SigList = $('<p/>').addClass('signature-html').appendTo(parent);
   
-      var radioItem = $('<input>').addClass('ms-ListItem').addClass('is-selectable').val(sigID).attr('onclick', "onSignatureSelected()")
+      var radioItem = $('<input>').addClass('ms-ListItem').addClass('signature-html').addClass('signature-radio').addClass('is-selectable').val(sigID).attr('onclick', "onSignatureSelected()")
         .attr('type', 'radio').attr('name', 'signature-radio').attr('tabindex', 0).attr('id', 'radioButton').appendTo(SigList);
         console.log(radioItem.val());
 
       var desc = $('<span/>')
-        .addClass('text-dark').addClass('rounded').addClass('signature-padding').addClass('is-selectable').attr('name', 'signature-labels')
+        .addClass('text-dark').addClass('rounded').addClass('signature-html').addClass('signature-label').addClass('signature-padding').addClass('is-selectable').attr('name', 'signature-labels')
         .text(sig)
         .appendTo(SigList);
     }

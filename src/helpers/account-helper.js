@@ -1,5 +1,5 @@
-var isAccountSelected = false;
-var accountSelected = "";
+var isAccountSelected = true;
+var accountSelected = "Philip";
 var signatureList;
 var accounttList;
 
@@ -52,7 +52,6 @@ function updateAccountSelectionStatus()
 {
   $('#account-selection').toggle(false);
   $('#signature-content').toggle(true);
-  console.log(accountSelected)
   buildSignatureList('#signatures-list', signatureList, accountSelected);
 }
 
@@ -68,12 +67,29 @@ function getAccountIndices(accountName)
     }
     i++;
   });
-  
   return indices;
-  
 }
 
 function getAccount()
   {
     return accountSelected;
   }
+
+function getIsAccountSelected()
+{
+  return isAccountSelected;
+}
+
+function logOut()
+{
+  isAccountSelected = false;
+  accountSelected = "";
+  var taskpaneElements = document.querySelectorAll(".signature-html");
+  console.log(taskpaneElements);
+  for(var i = 0; i < taskpaneElements.length; i++)
+  {
+    taskpaneElements[i].remove();
+  }
+  $('#account-selection').toggle(true);
+  $('#signature-content').toggle(false);
+}

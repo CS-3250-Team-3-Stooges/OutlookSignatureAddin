@@ -1,7 +1,5 @@
 // Next three lines will be populated by the database once it is finalized
 var accountList = ["Philip", "Sean", "Weston"]; 
-var signedIn = true;
-var loggedInAccount = "Weston";
 
 (function(){
   'use strict';
@@ -19,17 +17,17 @@ var loggedInAccount = "Weston";
       config = getConfig();
 
       /** Code by Philip - Functionality for account selection via dropdown menu within taskpane */
-      if(signedIn == false){
+      if(getIsAccountSelected() == false){
       buildAccountList('#dropdown-menu', accountList, signatureList);
       $('#account-selection').toggle(true);
       $('#signature-content').toggle(false);
       }
       else
       {
-        accountSelected = loggedInAccount;
         buildAccountList('#dropdown-menu', accountList, signatureList);
         updateAccountSelectionStatus();
       }
+
 
       /** Code by Philip - Insert Signature button functionality for taskpane */
       $('#insert-signature').on('click', function(){
@@ -43,22 +41,8 @@ var loggedInAccount = "Weston";
 
       /** Code by Philip - Log out button for the taskpane */
       $('#log-out').on('click', function(){
-        var divs = document.getElementsByName('signatures-divs');
-        var radios = document.getElementsByName('signature-radio');
-        var labels = document.getElementsByName('signature-labels');
-        divs.forEach(radioButton => {
-          radioButton.remove();
-        });
-        radios.forEach(radioButton => {
-          radioButton.remove();
-        });
-        labels.forEach(radioButton => {
-          radioButton.remove();
-        });
-        $('#account-selection').toggle(true);
-        $('#signature-content').toggle(false);
+        logOut();
       });
-
 
       $('#random-signature').on('click', function(){
         /** Code by Sean and Philip */
