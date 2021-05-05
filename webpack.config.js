@@ -89,6 +89,65 @@ module.exports = async (env, options) => {
     ],
     devServer: {
       setup: function (app, server) {
+        app.get('/logout', function(req, res) {
+          var loggedOutAcct = req.param('loggedOut');
+
+          var mysql = require('mysql');
+
+          var con = mysql.createConnection({
+            host: "216.137.177.30",
+            user: "team3",
+            password: "UpdateTrello!1",
+            database: "testDB"
+          });
+
+          con.connect(function(err) {
+            if (err) throw err;
+            con.query('UPDATE philipsAcc SET islogged = ? WHERE username = ?', [0, loggedOutAcct], (err, result, fields) => {
+              if (err) throw err;
+            });
+          });    
+        }),
+        app.get('/accountSelection', function(req, res) {
+          var selectedAccount = req.param('selectedAccount');
+
+          var mysql = require('mysql');
+
+          var con = mysql.createConnection({
+            host: "216.137.177.30",
+            user: "team3",
+            password: "UpdateTrello!1",
+            database: "testDB"
+          });
+
+          con.connect(function(err) {
+            if (err) throw err;
+            con.query('UPDATE philipsAcc SET islogged = ? WHERE username = ?', [1, selectedAccount], (err, result, fields) => {
+              if (err) throw err;
+            });
+          });          
+
+        }),
+        app.get('/accounts', function(req, res) {
+          var mysql = require('mysql');
+
+          var con = mysql.createConnection({
+            host: "216.137.177.30",
+            user: "team3",
+            password: "UpdateTrello!1",
+            database: "testDB"
+          });
+
+          con.connect(function(err) {
+            if (err) throw err;
+            con.query("SELECT * FROM philipsAcc", function (err, result, fields) {
+              if (err) throw err;
+              res.send(result);
+              
+            });
+          });
+
+        }),
         app.get('/signature', function (req, res) {
           // Code for reading with fs by sean
           var sigs = fs.readFileSync("assets/signatures.txt").toString();

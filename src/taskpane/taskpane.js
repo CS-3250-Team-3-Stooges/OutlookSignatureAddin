@@ -1,5 +1,3 @@
-// Next three lines will be populated by the database once it is finalized
-var accountList = ["Philip", "Sean", "Weston"]; 
 
 (function(){
   'use strict';
@@ -18,13 +16,13 @@ var accountList = ["Philip", "Sean", "Weston"];
 
       /** Code by Philip - Functionality for account selection via dropdown menu within taskpane */
       if(getIsAccountSelected() == false){
-      buildAccountList('#dropdown-menu', accountList, signatureList);
+      buildAccountList('#dropdown-menu', signatureList);
       $('#account-selection').toggle(true);
       $('#signature-content').toggle(false);
       }
       else
       {
-        buildAccountList('#dropdown-menu', accountList, signatureList);
+        buildAccountList('#dropdown-menu', signatureList);
         updateAccountSelectionStatus();
       }
 
@@ -63,10 +61,10 @@ var accountList = ["Philip", "Sean", "Weston"];
 
         $.ajax({
           url: "https://localhost:3000/set-signature?newSignature=" + getAccount() + "-" + newSig,
-          type: "GET"
         })
         /** Build signature list functionality */
         buildSignatureList('#signatures-list', signatureList);
+
       })
 
 

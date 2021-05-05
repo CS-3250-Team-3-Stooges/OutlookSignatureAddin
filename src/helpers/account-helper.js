@@ -1,13 +1,27 @@
-var isAccountSelected = true;
-var accountSelected = "Philip";
+var isAccountSelected = false;
+var accountSelected = "";
 var signatureList;
-var accounttList;
+var accountList = [];
 
-function buildAccountList(parent, acctList, signaturesForMe) {
-    accountList = acctList;
+$.ajax({
+  url: "https://localhost:3000/accounts",
+  type: "GET",
+  success: function(result){
+    result.forEach(account => {
+      accountList.push(account["username"]);
+      if (account["islogged"] == "1"){
+        isAccountSelected = true;
+        accountSelected = account["username"];
+        console.log(account["username"] + "is logged in");
+      }
+    });
+  }
+}); 
+
+function buildAccountList(parent, signaturesForMe) {
     signatureList = signaturesForMe;
     var acctID = 0
-    acctList.forEach(function(acct) {
+    accountList.forEach(function(acct) {
       var AcctList = $('<div>').addClass('form-check').appendTo(parent);
 
       var radioItem = $('<input>').addClass('form-check-input').attr('onclick', "onAccountSelected()")
@@ -28,7 +42,7 @@ function buildAccountList(parent, acctList, signaturesForMe) {
   }
 
 function onAccountSelected() {
-    var accountID = -1;
+  var accountID = -1;
   var dropDownItems = document.getElementsByName('account-item');
   var i = 0;
   while (i < dropDownItems.length) {
@@ -41,9 +55,12 @@ function onAccountSelected() {
   }
   if(accountID != -1)
   {
-
+    console.log("account being selected is" + accountList[accountID]);
     accountSelected = accountList[accountID]
     isAccountSelected = true;
+    $.ajax({
+      url: "https://localhost:3000/accountSelection?selectedAccount=" + accountSelected
+    });
     updateAccountSelectionStatus();
   }
 }
@@ -82,6 +99,10 @@ function getIsAccountSelected()
 
 function logOut()
 {
+  console.log("logging out " + accountSelected);
+  $.ajax({
+    url: "https://localhost:3000/logout?loggedOut=" + accountSelected
+  });
   isAccountSelected = false;
   accountSelected = "";
   var taskpaneElements = document.querySelectorAll(".signature-html");
@@ -92,4 +113,5 @@ function logOut()
   }
   $('#account-selection').toggle(true);
   $('#signature-content').toggle(false);
+
 }
