@@ -21,6 +21,7 @@ $.ajax({
 function buildAccountList(parent, signaturesForMe) {
     signatureList = signaturesForMe;
     var acctID = 0
+
     accountList.forEach(function(acct) {
       var AcctList = $('<div>').addClass('form-check').appendTo(parent);
 
@@ -58,10 +59,10 @@ function onAccountSelected() {
     console.log("account being selected is" + accountList[accountID]);
     accountSelected = accountList[accountID]
     isAccountSelected = true;
-    $.ajax({
-      url: "https://localhost:3000/accountSelection?selectedAccount=" + accountSelected
-    });
     updateAccountSelectionStatus();
+    $.ajax({
+      url: "https://localhost:3000/accountSelection?selectedAccount=" + accountSelected,
+    });
   }
 }
 
@@ -105,12 +106,6 @@ function logOut()
   });
   isAccountSelected = false;
   accountSelected = "";
-  var taskpaneElements = document.querySelectorAll(".signature-html");
-  console.log(taskpaneElements);
-  for(var i = 0; i < taskpaneElements.length; i++)
-  {
-    taskpaneElements[i].remove();
-  }
   $('#account-selection').toggle(true);
   $('#signature-content').toggle(false);
 

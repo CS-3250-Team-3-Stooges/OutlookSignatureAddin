@@ -54,6 +54,16 @@ function getRadioID(){
  *  @param {String[]} sigList - Signature array containing all the signatures from the text file for population on the taskpane
  */
 function buildSignatureList(parent, sigList, account) {
+  console.log(account)
+
+  // Empty out the HTML container in case it has residue html from old login
+  var taskpaneElements = document.querySelectorAll(".signature-html");
+  console.log(taskpaneElements);
+  for(var i = 0; i < taskpaneElements.length; i++)
+  {
+    taskpaneElements[i].remove();
+  }
+
   var sigID = 0
   sigList.forEach(function(sig) {
     var key = account + "-";
