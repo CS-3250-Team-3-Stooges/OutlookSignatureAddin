@@ -63,21 +63,6 @@
           <SourceLocation resid="Taskpane.Url"/>
         </Action>
       </Control>
-      <Control xsi:type="Button" id="msgComposeInsertDefaultGist">
-        <Label resid="FunctionButton.Label"/>
-        <Supertip>
-          <Title resid="FunctionButton.Title"/>
-          <Description resid="FunctionButton.Tooltip"/>
-        </Supertip>
-        <Icon>
-          <bt:Image size="16" resid="Icon.16x16"/>
-          <bt:Image size="32" resid="Icon.32x32"/>
-          <bt:Image size="80" resid="Icon.80x80"/>
-        </Icon>
-        <Action xsi:type="ExecuteFunction">
-          <FunctionName>insertDefaultGist</FunctionName>
-        </Action>
-      </Control>
     </Group>
   </OfficeTab>
 </ExtensionPoint>
@@ -98,12 +83,9 @@
     <bt:String id="GroupLabel" DefaultValue="Git the gist"/>
     <bt:String id="TaskpaneButton.Label" DefaultValue="Signature Selection"/>
     <bt:String id="TaskpaneButton.Title" DefaultValue="Signature Selection"/>
-    <bt:String id="FunctionButton.Label" DefaultValue="Insert Random Signature"/>
-    <bt:String id="FunctionButton.Title" DefaultValue="Insert Random Signature"/>
   </bt:ShortStrings>
   <bt:LongStrings>
     <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Displays a list of your signatures and allows your to randomly select a signature, add a new signature, delete a signature, and select specific signatures"/>
-    <bt:String id="FunctionButton.Tooltip" DefaultValue="Inserts a random signature from the save list of signatures."/>
   </bt:LongStrings>
 </Resources>
   </VersionOverrides>

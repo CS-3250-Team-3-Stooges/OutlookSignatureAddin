@@ -89,11 +89,15 @@ module.exports = async (env, options) => {
     ],
     devServer: {
       setup: function (app, server) {
+        // Code by Philip, recieved help from my brother James who helped with connecting to his sql database
         app.get('/logout', function(req, res) {
+
+          // Recieve the url parameter from the http request which will be used to tell which account should be signed out
           var loggedOutAcct = req.param('loggedOut');
 
           var mysql = require('mysql');
 
+          // connect to James' sql server where we have a table set up with accounts
           var con = mysql.createConnection({
             host: "216.137.177.30",
             user: "team3",
@@ -103,11 +107,13 @@ module.exports = async (env, options) => {
 
           con.connect(function(err) {
             if (err) throw err;
+            // once connected, update the islogged value connected to the username that we got from the url parameters
             con.query('UPDATE philipsAcc SET islogged = ? WHERE username = ?', [0, loggedOutAcct], (err, result, fields) => {
               if (err) throw err;
             });
           });    
         }),
+        // Code by Philip. Same process used here as the logout except here we will be setting the value to 1 meaning the account will be logged in. If i had more time I could probably merge both there functionalities into one call
         app.get('/accountSelection', function(req, res) {
           var selectedAccount = req.param('selectedAccount');
 
@@ -128,6 +134,7 @@ module.exports = async (env, options) => {
           });          
 
         }),
+        // Code by philip, this will connect to the sql database and return the table of philipsAcc
         app.get('/accounts', function(req, res) {
           var mysql = require('mysql');
 
@@ -152,7 +159,7 @@ module.exports = async (env, options) => {
           // Code for reading with fs by sean
           var sigs = fs.readFileSync("assets/signatures.txt").toString();
 
-    
+          // code by philip for sending the request
           res.send(sigs);
         }),
         app.get('/set-signature', function (req, res) {

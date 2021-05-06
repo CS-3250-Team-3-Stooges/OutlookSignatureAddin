@@ -16,12 +16,14 @@
 
       /** Code by Philip - Functionality for account selection via dropdown menu within taskpane */
       if(getIsAccountSelected() == false){
+      console.log("account not selected");
       buildAccountList('#dropdown-menu', signatureList);
       $('#account-selection').toggle(true);
       $('#signature-content').toggle(false);
       }
       else
       {
+        console.log("account is selected");
         buildAccountList('#dropdown-menu', signatureList);
         updateAccountSelectionStatus();
       }
@@ -63,7 +65,7 @@
           url: "https://localhost:3000/set-signature?newSignature=" + getAccount() + "-" + newSig,
         })
         /** Build signature list functionality */
-        buildSignatureList('#signatures-list', signatureList);
+        buildSignatureList('#signatures-list', signatureList, getAccount());
 
       })
 
@@ -91,7 +93,7 @@
         type: "GET"
       });
         /** Build signature list functionality */
-        buildSignatureList('#signatures-list', signatureList);
+        buildSignatureList('#signatures-list', signatureList, getAccount());
       });
     });
   };
@@ -100,5 +102,11 @@
   function storeSignatures(signatures)
   {
     signatureList = signatures.split("\n");
+  }
+
+  // Code by Philip with the help of stack overflow from https://stackoverflow.com/questions/14659098/checking-if-a-textbox-is-empty-in-javascript
+  function checkTextField(field) {
+    $('#save-signature').removeAttr('disabled');
+
   }
 })();
