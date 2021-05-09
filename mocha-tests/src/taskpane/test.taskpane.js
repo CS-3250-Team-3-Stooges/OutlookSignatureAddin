@@ -63,7 +63,8 @@ describe('Array', function() {
   //Code written by Sean - Generic Test that var object should have expected properties
   it('should have property name with value 35', function(){
       var a = {name: 'Sean', age: 35},    
-      a.should.have.property('name').equal('35');
+          
+      expect(a).to.have.property('name').equal('35');
   });
     
   //Code by Sean and Weston - Generic test that created array has the correct number of members
