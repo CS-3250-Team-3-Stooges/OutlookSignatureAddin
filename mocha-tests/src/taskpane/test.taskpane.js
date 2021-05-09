@@ -46,20 +46,28 @@ describe('Array', function() {
 
   //Code adapted by Sean - Generic Test that compares arrays have same members - Taken from https://stackoverflow.com/questions/44335770/node-mocha-chai-unit-tests-compare-array-of-objects-regardless-of-order
   it('should have the same members', function() {
-   var a = [
+   var genArrA = [
    {name: 'Sean', age: 35},
    {name: 'Weston', age: 30},
    ]
 
    //assume we got the result in this order
-   var b = [
+   var genArrB = [
    {name: 'Sean', age: 35},
    {name: 'Weston', age: 30},
    ]
 
-   expect(a).to.have.deep.members(b)
+   expect(genArrA).to.have.deep.members(genArrB)
   });
-
+  
+  //Code written by Sean - Generic Test that var array should have expected properties
+  it('should have property name with value 35', function(){
+      var genArr = [
+      {name: 'Sean', age: 35},    
+      ]
+      genArr.should.have.property('name').equal('35');
+  });
+    
   //Code by Sean and Weston - Generic test that created array has the correct number of members
   it('should contain the correct number of members', function() {
     var accountList = ["Philip", "Sean", "Weston"];
