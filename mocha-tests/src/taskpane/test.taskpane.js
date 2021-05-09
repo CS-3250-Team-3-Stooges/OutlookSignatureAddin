@@ -60,10 +60,12 @@ describe('Array', function() {
    expect(genArrA).to.have.deep.members(genArrB)
   });
   
-  //Code written by Sean - Generic Test that var object should have expected properties
+  //Code written by Sean - Generic Test that var array should have expected properties
   it('should have property name with value 35', function(){
-      var a = {name: 'Sean', age: 35},    
-          
+      var a = [
+          {name: 'Sean', age: 35},    
+          ]
+      
       expect(a).to.have.property('name').equal('35');
   });
     
