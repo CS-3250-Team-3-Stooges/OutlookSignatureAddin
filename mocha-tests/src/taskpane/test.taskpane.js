@@ -68,6 +68,15 @@ describe('Array', function() {
       
       expect(a).to.have.property('name').equal('Sean');
   });
+  
+  //Code written by Sean - Generic Test that var array should have expected properties
+  it('should have property name with value Sean', function(){
+      var a = [
+          {name: 'Sean', age: 35},    
+          ]
+      
+      expect(a).to.have.property('age').equal('35');
+  });  
     
   //Code by Sean and Weston - Generic test that created array has the correct number of members
   it('should contain the correct number of members', function() {
