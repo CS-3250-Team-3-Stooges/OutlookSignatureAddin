@@ -1,8 +1,22 @@
 var isAccountSelected = false;
 var accountSelected = "";
 var signatureList;
-var accounttList;
+var accountList = [];
 
+$.ajax({
+  url: "https://localhost:3000/accounts",
+  type: "GET",
+  success: function(result){
+    result.forEach(account => {
+      accountList.push(account["username"]);
+      if (account["islogged"] == "1"){
+        isAccountSelected = true;
+        accountSelected = account["username"];
+        console.log(account["username"] + "is logged in");
+      }
+    });
+  }
+}); 
 /** Documented by Sean
  *@constuctor
  *@param {string} parent - Parent is a string that correlated to the id tag for the html div that will be populated with the signatures
@@ -12,11 +26,11 @@ var accounttList;
  *@var radioItem - UI element for radio dial
  *@var desc - UI elements for formatting 
  */
-function buildAccountList(parent, acctList, signaturesForMe) {
-    accountList = acctList;
+function buildAccountList(parent, signaturesForMe) {
     signatureList = signaturesForMe;
     var acctID = 0
-    acctList.forEach(function(acct) {
+
+    accountList.forEach(function(acct) {
       var AcctList = $('<div>').addClass('form-check').appendTo(parent);
 
       var radioItem = $('<input>').addClass('form-check-input').attr('onclick', "onAccountSelected()")
@@ -42,7 +56,7 @@ function buildAccountList(parent, acctList, signaturesForMe) {
  *@var dropDownItems - variable for the specefic links in the drop-down menu
  * Setting up the selection of account function with drop-down implementation */
 function onAccountSelected() {
-    var accountID = -1;
+  var accountID = -1;
   var dropDownItems = document.getElementsByName('account-item');
   var i = 0;
   while (i < dropDownItems.length) {
@@ -55,10 +69,13 @@ function onAccountSelected() {
   }
   if(accountID != -1)
   {
-
+    console.log("account being selected is" + accountList[accountID]);
     accountSelected = accountList[accountID]
     isAccountSelected = true;
     updateAccountSelectionStatus();
+    $.ajax({
+      url: "https://localhost:3000/accountSelection?selectedAccount=" + accountSelected,
+    });
   }
 }
 
@@ -69,7 +86,6 @@ function updateAccountSelectionStatus()
 {
   $('#account-selection').toggle(false);
   $('#signature-content').toggle(true);
-  console.log(accountSelected)
   buildSignatureList('#signatures-list', signatureList, accountSelected);
 }
 
@@ -85,12 +101,28 @@ function getAccountIndices(accountName)
     }
     i++;
   });
-  
   return indices;
-  
 }
 
 function getAccount()
   {
     return accountSelected;
   }
+
+function getIsAccountSelected()
+{
+  return isAccountSelected;
+}
+
+function logOut()
+{
+  console.log("logging out " + accountSelected);
+  $.ajax({
+    url: "https://localhost:3000/logout?loggedOut=" + accountSelected
+  });
+  isAccountSelected = false;
+  accountSelected = "";
+  $('#account-selection').toggle(true);
+  $('#signature-content').toggle(false);
+
+}
