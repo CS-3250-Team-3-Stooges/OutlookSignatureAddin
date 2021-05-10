@@ -15,49 +15,54 @@ var btnEvent;
 Office.initialize = function (reason) {   
 };
 
-// Code by weston
-// prints the list items
-//printList()
-//{
-    //var curr = this.head;
-    //var str = "";
-    //while (curr) {
-        //str += curr.element + " ";
-        //curr = curr.next;
-    //}
-    //console.log(str);
-//}
-// random function for LinkedList implementation
-//function random(result) {
-  //var LinkedList = require('linked-list')
+/** Documented by Sean
+* @deprecated
+Code by weston
+prints the list items
+printList()
+{
+    var curr = this.head;
+    var str = "";
+    while (curr) {
+        str += curr.element + " ";
+        curr = curr.next;
+    }
+    console.log(str);
+}
+ random function for LinkedList implementation
+function random(result) {
+  var LinkedList = require('linked-list')
 
-  //var Signature1 = newLinkedList.item('Weston J. Lake')
-  //var Signature2 = newLinkedList.item('Weston Lake')
-  //var Signature3 = newLinkedList.item('weston j. lake')
-  //var Signature4 = newLinkedList.item('WJL')
-  //var Signature5 = newLinkedList.item('WL')
-  //var list = newLinkedList(Signature1, Signature2, Signature3, Signature4, Signature5)
-  //var randomNum = math.random(list.size)
-  //if (randomNum != 0) {
-    //while (randomNum >= 0) {
-      //list.head.next
-      //randomNum--
-      //console.log(list.Signature1);
-      //list.printList();
-    //}
-    //return list.head;
-  //}
-  //else {
-    //console.log(Signature1);
-    //list.printList();
-    //return list.head;
-  //}
-//}
+  var Signature1 = newLinkedList.item('Weston J. Lake')
+  var Signature2 = newLinkedList.item('Weston Lake')
+  var Signature3 = newLinkedList.item('weston j. lake')
+  var Signature4 = newLinkedList.item('WJL')
+  var Signature5 = newLinkedList.item('WL')
+  var list = newLinkedList(Signature1, Signature2, Signature3, Signature4, Signature5)
+  var randomNum = math.random(list.size)
+  if (randomNum != 0) {
+    while (randomNum >= 0) {
+      list.head.next
+      randomNum--
+      console.log(list.Signature1);
+      list.printList();
+    }
+    return list.head;
+  }
+  else {
+    console.log(Signature1);
+    list.printList();
+    return list.head;
+  }
+}
 
-// addEventHandler method
-//object.addEventHandler("click", random());
+ addEventHandler method
+object.addEventHandler("click", random()); */
 
-/** Add any UI-less function here. */
+/** Documented by Phillip & Sean
+ *  @constructor
+ *  @param {String} error - error message
+ * Add any UI-less function here. */
 function showError(error) {
   Office.context.mailbox.item.notificationMessages.replaceAsync('github-error', {
     type: 'errorMessage',
@@ -151,12 +156,14 @@ function multiplyNumbers(x, y) {
 }
 
 /**
-Deprecated - Code by Sean
+*@deprecated
+Deprecated - Code by Sean & Weston
 var sig = fs.readFileSync("assets/signatures.txt").toString().split("\n");
 for (i in sig) {
   console.log(sig[i])
 }
-Deprecated - Code by Sean
+*@deprecated
+Deprecated - Code by Sean & Weston
 function randomSignature() {
   var sig = fs.readFileSync('assets/signatures.txt').toString().split("\n");
   var randomNumber = Math.floor(Math.random() * (sig.length));

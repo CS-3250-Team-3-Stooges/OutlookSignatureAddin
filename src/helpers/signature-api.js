@@ -1,7 +1,8 @@
 var signatureList;
 var signature;
 
-/** getSignatures will grab the signature text file and return that string back to the caller for storing
+/** Documented by Phillip
+ * getSignatures will grab the signature text file and return that string back to the caller for storing
  *  @param {string} endpoint - The endpoint for the url to find the signature file
  */
  function getSignatures (endpoint) {
@@ -17,7 +18,8 @@ var signature;
       }); 
   }
 
-/** getRadioID will look for the selected radio button on the taskpane and return the signature index in the master signature array for that radio button */
+/** Documented by Phillip 
+ *getRadioID will look for the selected radio button on the taskpane and return the signature index in the master signature array for that radio button */
 function getRadioID(){
   var sigID = -1;
   var radioButtons = document.getElementsByName('signature-radio');
@@ -49,7 +51,9 @@ function getRadioID(){
 }
 
  
-/** Takes in html tag and signature list to populate the task pane with signatures
+/** Documented by Phillip & Sean
+ * Takes in html tag and signature list to populate the task pane with signatures
+ *  @constructor
  *  @param {string} parent - Parent is a string that correlated to the id tag for the html div that will be populated with the signatures
  *  @param {String[]} sigList - Signature array containing all the signatures from the text file for population on the taskpane
  */
@@ -70,7 +74,11 @@ function buildSignatureList(parent, sigList, account) {
     console.log(key);
     //console.log(sig.substr(0,key.length - 1));
 
-    //next line by Weston
+    /** Documented by Sean
+     * @var {SigList} - signature list UI elements
+     * @var {radioItem} - radio dial buttons for UI to select functions 
+     * @var {desc} - labels for UI elements
+     * next line by Weston */
     if(sig.substr(0,key.length) == key)
     {
       var SigList = $('<p/>').addClass('signature-html').appendTo(parent);
@@ -87,7 +95,10 @@ function buildSignatureList(parent, sigList, account) {
     sigID = sigID + 1;}
   );
 }
-
+/** Documented by Sean
+ *@constuctor 
+ *@param {string} parent - Parent is a string that correlated to the id tag for the html div that will be populated with the signatures
+ */
 function clearSignatureList(parent){
   $(parent).empty();
 }

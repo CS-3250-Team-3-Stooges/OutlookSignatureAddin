@@ -17,7 +17,15 @@ $.ajax({
     });
   }
 }); 
-
+/** Documented by Sean
+ *@constuctor
+ *@param {string} parent - Parent is a string that correlated to the id tag for the html div that will be populated with the signatures
+ *@param {string} acctList - list of accounts for the account management system
+ *@param {string} signaturesForMe - selected per-account signatures from filtering function
+ *@var AcctList - UI element for account list
+ *@var radioItem - UI element for radio dial
+ *@var desc - UI elements for formatting 
+ */
 function buildAccountList(parent, signaturesForMe) {
     signatureList = signaturesForMe;
     var acctID = 0
@@ -42,6 +50,11 @@ function buildAccountList(parent, signaturesForMe) {
     );
   }
 
+ /** Documented by Sean
+ *@constuctor
+ *@var accountID -
+ *@var dropDownItems - variable for the specefic links in the drop-down menu
+ * Setting up the selection of account function with drop-down implementation */
 function onAccountSelected() {
   var accountID = -1;
   var dropDownItems = document.getElementsByName('account-item');
@@ -66,6 +79,9 @@ function onAccountSelected() {
   }
 }
 
+/** Documented by Sean
+ *@constuctor
+ * Updating the selected account for taskpane UI display */
 function updateAccountSelectionStatus()
 {
   $('#account-selection').toggle(false);
