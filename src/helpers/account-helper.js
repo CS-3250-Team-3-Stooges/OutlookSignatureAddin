@@ -17,6 +17,7 @@ $.ajax({
     });
   }
 }); 
+
 /** Documented by Sean
  *@constuctor
  *@param {string} parent - Parent is a string that correlated to the id tag for the html div that will be populated with the signatures
